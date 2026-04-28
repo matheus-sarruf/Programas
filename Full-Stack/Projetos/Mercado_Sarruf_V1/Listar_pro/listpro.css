@@ -1,0 +1,114 @@
+html,
+body {
+    overflow-x: hidden;
+}
+
+* {
+    margin: 0 auto;
+    /* margem automatica nos lados e grudada no topo*/
+}
+
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    /*muda as fontes das letras de todo o corpo*/
+    color: #00ffee;
+    /*cor especificamente dos caracteres dentro so corpo*/
+    text-shadow: 2px 2px 2px black;
+    /*muda a cor das laterais da letras de todo o corpo, o 1 é o quão a direita fica os px, o 2 é o quão para baixo fica os px e o 3 é o quão embaçado fica os px*/
+    width: 100%;
+    /*ocupara X% da largura da tela, no caso 100%*/
+    height: 100%;
+    /*autura pode ser X pxs ou em X%*/
+    background-image: url("https://cdn.wallpapersafari.com/92/14/XVWL7r.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+@media (max-width: 550px) {
+    form {
+        background-color: #00000000;
+    }
+}
+
+main {
+    margin-top: 25px;
+    width: 95%;
+}
+
+.alinha-esquerda {
+    margin-left: 15px;
+}
+
+h1 {
+    margin: 15px 0px 15px 15px;
+}
+
+hr {
+    margin: 15px;
+    border: 1px solid cadetblue;
+}
+
+form {
+    margin-right: 100px;
+    padding: 10px 15px;
+    /*aumenta o espaço interno do formulário*/
+    background-color: #3e4e90a9;
+    /*muda a cor de fundo do formulário*/
+    border: 2px solid #00e1ff78;
+    border-radius: 8px;
+}
+
+input#listagem_pro,
+[type="text"] {
+    background-color: rgba(27, 155, 155, 0.765);
+    color: whitesmoke;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    border: 0.5px solid #00e1ff78;
+}
+
+input#listagem_pro {
+    transform: scale(1);
+    transition: 1s;
+}
+
+input#listagem_pro:hover {
+    transform: scale(0.95);
+    transition: 0.5s;
+}
+
+/*modifica só os inputs do tipo texto*/
+label[for="preco"],
+[for="quantidade"],
+[for="codigo"],
+[for="nome"],
+[for="id"] {
+    display: block;
+    float: left;
+}
+
+label[for="preco"],
+[for="quantidade"],
+[for="codigo"],
+[for="nome"],
+[for="id"],
+input [type="text"] {
+    width: 90px;
+}
+
+/*modifica só os imputs do tipo texto*/
+
+::-webkit-input-placeholder {
+    color: whitesmoke;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/*não sei com mas sei que muda a cor do placeholder*/
+
+
+
+/*    display: flex;
+    flex-direction: column;
+    para fazer celular
+*/

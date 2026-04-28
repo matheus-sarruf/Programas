@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Boreal</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: #0a192f;
+            overflow: hidden;
+        }
+
+        .aurora {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .aurora-band {
+            position: absolute;
+            width: 100%;
+            height: 150px;
+            /*  filter: blur(40px);  */
+            opacity: 0.7;
+            animation: auroraMove 15s infinite alternate ease-in-out;
+        }
+
+        .band1 {
+            background: linear-gradient(90deg, #00b4db, #0083b0);
+            top: 10%;
+            animation-delay: 0s;
+        }
+
+        .band2 {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            top: 30%;
+            animation-delay: -5s;
+        }
+
+        .band3 {
+            background: linear-gradient(90deg, #f093fb, #f5576c);
+            top: 50%;
+            animation-delay: -10s;
+        }
+
+        .band4 {
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            top: 70%;
+            animation-delay: -7s;
+        }
+
+        @keyframes auroraMove {
+            0% { 
+                transform: translateX(-10%) skewX(-10deg); 
+            }
+            100% { 
+                transform: translateX(10%) skewX(10deg); 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="aurora">
+        <div class="aurora-band band1"></div>
+        <div class="aurora-band band2"></div>
+        <div class="aurora-band band3"></div>
+        <div class="aurora-band band4"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Uma Pergunta Especial</title>
+        <link rel="icon" type="image/x-icon"
+            href="coracao.png" />
+        <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .coracao {
+            position: absolute;
+            font-size: 20px;
+            color: #ff6b6b;
+            animation: cair 6s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes cair {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            animation: surgir 1s ease-out;
+        }
+
+        @keyframes surgir {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .mensagem {
+            color: #666;
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .nome-especial {
+            color: #e84393;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .botoes {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            min-width: 120px;
+        }
+
+        .btn-sim {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .btn-sim:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.6);
+        }
+
+        .btn-nao {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            position: relative;
+        }
+
+        .btn-nao:hover {
+            transform: scale(1.05);
+        }
+
+        .flores {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0.8;
+            z-index: 5;
+        }
+
+        .surpresa {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            border-radius: 15px;
+            animation: pulsar 2s infinite;
+        }
+
+        @keyframes pulsar {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .coracoes-final {
+            font-size: 40px;
+            color: #ff6b6b;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+    </head>
+    <body>
+        <div id="coracoes"></div>
+
+        <div class="flores" style="top: 10%; left: 5%;">🌹</div>
+        <div class="flores" style="top: 15%; right: 8%;">🌸</div>
+        <div class="flores" style="bottom: 20%; left: 10%;">💮</div>
+        <div class="flores" style="bottom: 15%; right: 5%;">🏵️</div>
+
+        <div class="container">
+            <h1>💖 Uma Pergunta do Coração 💖</h1>
+
+            <div class="mensagem">
+                <p>Querida <span class="nome-especial"
+                        id="nomePessoa">Maria</span>,</p>
+                <br>
+                <p>Desde o momento em que nossos caminhos se cruzaram, minha
+                    vida ganhou novas cores. Seu sorriso ilumina meus dias e sua
+                    companhia torna tudo mais especial.</p>
+                <br>
+                <p>Cada momento ao seu lado é um tesouro, e não consigo mais
+                    imaginar minha vida sem você.</p>
+                <br>
+                <p><strong>Você aceitaria fazer parte da minha vida de uma forma
+                        muito especial?</strong></p>
+            </div>
+
+            <div class="botoes">
+                <button class="btn btn-sim" onclick="aceitar()">SIM 💕</button>
+                <button class="btn btn-nao" id="btnNao"
+                    onmouseover="fugir()">Não 😢</button>
+            </div>
+
+            <div id="surpresa" class="surpresa">
+                <div class="coracoes-final">💖 💕 💞 💓 💗</div>
+                <h2>EU TE AMO! 🥰</h2>
+                <p>Você acabou de fazer meu coração o mais feliz do mundo!</p>
+                <p>Mal posso esperar para viver lindos momentos ao seu lado!
+                    💫</p>
+                <div class="coracoes-final">💖 💕 💞 💓 💗</div>
+            </div>
+        </div>
+
+        <script>
+        function criarCoracoes() {
+            const container = document.getElementById('coracoes');
+            for (let i = 0; i < 15; i++) {
+                const coracao = document.createElement('div');
+                coracao.className = 'coracao';
+                coracao.innerHTML = '💖';
+                coracao.style.left = Math.random() * 100 + 'vw';
+                coracao.style.animationDelay = Math.random() * 6 + 's';
+                coracao.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                container.appendChild(coracao);
+            }
+        }
+
+        function fugir() {
+            const btnNao = document.getElementById('btnNao');
+            const container = document.querySelector('.container');
+            const containerRect = container.getBoundingClientRect();
+            
+            const margemSegura = 20;
+            
+            const maxX = containerRect.width - btnNao.offsetWidth - margemSegura;
+            const maxY = containerRect.height - btnNao.offsetHeight - margemSegura;
+            
+            let novaX, novaY;
+            let posicaoValida = false;
+            
+            while (!posicaoValida) {
+                novaX = Math.random() * maxX + margemSegura;
+                novaY = Math.random() * maxY + margemSegura;
+                
+                const centroX = containerRect.width / 2;
+                const centroY = containerRect.height / 2;
+                const distanciaDoCentro = Math.sqrt(
+                    Math.pow(novaX - centroX, 2) + Math.pow(novaY - centroY, 2)
+                );
+                
+                if (distanciaDoCentro > 100) {
+                    posicaoValida = true;
+                }
+            }
+            
+            btnNao.style.transition = 'all 0.5s ease';
+            btnNao.style.position = 'absolute';
+            btnNao.style.left = novaX + 'px';
+            btnNao.style.top = novaY + 'px';
+        }
+
+        function aceitar() {
+            const surpresa = document.getElementById('surpresa');
+            const botoes = document.querySelector('.botoes');
+            
+            botoes.style.display = 'none';
+            surpresa.style.display = 'block';
+            
+            criarExplosaoCoracoes();
+            tocarMusica();
+        }
+
+        function criarExplosaoCoracoes() {
+            const container = document.body;
+            const coracoes = ['💕', '💖', '💗', '💓', '💞', '🥰', '😍', '💘'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const coracao = document.createElement('div');
+                    coracao.className = 'coracao';
+                    coracao.innerHTML = coracoes[Math.floor(Math.random() * coracoes.length)];
+                    coracao.style.left = Math.random() * 100 + 'vw';
+                    coracao.style.animation = 'cair 4s linear forwards';
+                    coracao.style.fontSize = (Math.random() * 25 + 20) + 'px';
+                    container.appendChild(coracao);
+                    
+                    setTimeout(() => {
+                        coracao.remove();
+                    }, 4000);
+                }, i * 100);
+            }
+        }
+
+        function tocarMusica() {
+            console.log('🎵 Música romântica tocando...');
+        }
+
+        function personalizarNome() {
+            const nome = "Maria"; 
+            document.getElementById('nomePessoa').textContent = nome;
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            criarCoracoes();
+            personalizarNome();
+            
+            document.getElementById('btnNao').addEventListener('click', function() {
+                alert("💔 Tente o botão SIM... ele é muito mais divertido! 😉");
+                fugir();
+            });
+        });
+
+        setInterval(() => {
+            if (Math.random() < 0.1) {
+                fugir();
+            }
+        }, 3000);
+    </script>
+    </body>
+</html>

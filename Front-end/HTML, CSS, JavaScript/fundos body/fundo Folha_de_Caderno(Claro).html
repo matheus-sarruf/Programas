@@ -1,0 +1,21 @@
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: 
+        linear-gradient(90deg, transparent 79px, #ff0000 79px, #ff0000 81px, transparent 81px),
+        linear-gradient(#eee .1em, transparent .1em);
+    background-size: 100% 1.2em;
+    animation: moveLines 20s linear infinite;
+}
+
+@keyframes moveLines {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 0 100vh;
+    }
+}
+</style>

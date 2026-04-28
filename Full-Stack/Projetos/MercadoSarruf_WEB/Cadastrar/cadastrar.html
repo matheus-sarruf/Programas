@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../comun.css">
+    <title>Cadastro de Produtos</title>
+</head>
+
+<body>
+    <header>
+        <h1>Cadastros de Produtos</h1>
+    </header>
+    <main>
+        <form id="cadastrar_produtos1" method="post" action="cadastrar.jsp">
+            <div id="alinha_pai">
+                <div class="alinha">
+                    <label for="nome">Nome:</label>
+                    <label for="codigo">Código:</label>
+                    <label for="preco">Preço:</label>
+                    <label for="quantidade">Quantidade:</label>
+                    <label for="marca">Marca:</label>
+                </div>
+                <div id="inputs" class="alinha">
+                    <input type="text" id="nome" name="nome" placeholder="   digite o nome aqui" required>
+                    <input type="text" id="codigo" name="codigo" placeholder="   digite o código aqui"
+                        pattern="[0-9]+([0-9]+)?" required>
+                    <input type="text" id="preco" name="preco" placeholder="   digite o preço aqui"
+                        pattern="[0-9]+([,\.][0-9]+)?" required>
+                    <input type="text" id="quantidade" name="quantidade" placeholder="   digite o quantidade aqui"
+                        pattern="[0-9]+([,\.][0-9]+)?" required>
+                    <input type="text" id="marca" name="marca" placeholder="   digite o marca aqui" required>
+                </div>
+            </div>
+            <p><input type="submit" id="cadastrar" value="Cadastrar"></p>
+        </form>
+        <hr>
+        <form id="cadastrar_produtos1" method="post" action="cadastrar.jsp">
+            <input type="hidden" id="variavel" name="variavel" value="12345677">
+            <input type="submit" id="reinsercao" value="REINSERÇÃO">
+            <p>
+                ⚠ Atenção ⚠: Ao clicar no botão REINSERÇÃO ele ira apagar todos os dados do banco de dados e reinserir o
+                backup.
+            </p>
+        </form>
+    </main>
+    <script src="../comum.js"></script>
+    <script>
+        if (document.documentElement.clientWidth < 850) {
+            document.getElementById('alinha_pai').innerHTML = `
+                <div class="alinha">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" placeholder="   digite o nome aqui" required>
+                    <label for="codigo">Código:</label>
+                    <input type="text" id="codigo" name="codigo" placeholder="   digite o código aqui" pattern="[0-9]+([0-9]+)?" required>
+                    <label for="preco">Preço:</label>
+                    <input type="text" id="preco" name="preco" placeholder="   digite o preço aqui" pattern="[0-9]+([,\.][0-9]+)?" required>
+                    <label for="quantidade">Quantidade:</label>
+                    <input type="text" id="quantidade" name="quantidade" placeholder="   digite o quantidade aqui" pattern="[0-9]+([,\.][0-9]+)?" required>
+                    <label for="marca">Marca:</label>
+                    <input type="text" id="marca" name="marca" placeholder="   digite o marca aqui" required>
+                </div>
+                `
+        }
+    </script>
+</body>
+
+</html>

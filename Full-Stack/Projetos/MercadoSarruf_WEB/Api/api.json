@@ -1,0 +1,54 @@
+{
+  "preferenciasTema": {
+    "tema": "verde"
+  },
+  "cursor": {
+    "caminho_cursor_tudo": "Cursores/azul_tudo_menor.cur",
+    "caminho_cursor_link": "Cursores/azul_link_click.cur",
+    "caminho_cursor_texto_copia": "Cursores/azul_texto.cur"
+  },
+  "sons": {
+    "caminho_som_click": "Sons/Efeitos/button_click_02.wav",
+    "caminho_som_click_gif": "Sons/Efeitos/button_click_02.wav",
+    "caminho_som_funk_meme": "Sons/Efeitos/funk_do_surprise.mp3",
+    "caminho_som_hover": "Sons/Efeitos/Butao_Click_Som.wav",
+    "caminho_musica": [
+      "Sons/Musicas_Fundo/Beethoven.mp3",
+      "Sons/Musicas_Fundo/Black_Vortex(chosic.com).mp3",
+      "Sons/Musicas_Fundo/Carefree(chosic.com).mp3",
+      "Sons/Musicas_Fundo/Christmas-Rap(chosic.com).mp3",
+      "Sons/Musicas_Fundo/Cipher2(chosic.com).mp3",
+      "Sons/Musicas_Fundo/Dance-of-the-Sugar-Plum-Fairy(chosic.com).mp3",
+      "Sons/Musicas_Fundo/Elevator-music(chosic.com).mp3",
+      "Sons/Musicas_Fundo/Fluffing-a-Duck(chosic.com).mp3",
+      "Sons/Musicas_Fundo/Hall-of-the-Mountain-King(chosic.com).mp3",
+      "Sons/Musicas_Fundo/Hidden-Agenda(chosic.com).mp3",
+      "Sons/Musicas_Fundo/Kevin-Macleod-Investigations(chosic.com).mp3",
+      "Sons/Musicas_Fundo/Meatball-Parade(chosic.com).mp3",
+      "Sons/Musicas_Fundo/Monkeys-Spinning-Monkeys(chosic.com).mp3",
+      "Sons/Musicas_Fundo/Run-Amok(chosic.com).mp3",
+      "Sons/Musicas_Fundo/Scheming-Weasel-faster(chosic.com).mp3",
+      "Sons/Musicas_Fundo/Sneaky-Adventure(chosic.com).mp3",
+      "Sons/Musicas_Fundo/Sneaky-Snitch(chosic.com).mp3",
+      "Sons/Musicas_Fundo/SS1_Slay_The_Spire.mp3",
+      "Sons/Musicas_Fundo/SS2_The_City.mp3",
+      "Sons/Musicas_Fundo/SS3_Escape_Plan.mp3",
+      "Sons/Musicas_Fundo/SS4_The_Credits.mp3",
+      "Sons/Musicas_Fundo/Swing-Machine-chosic.com_.mp3",
+      "Sons/Musicas_Fundo/Thatched-Villagers(chosic.com).mp3",
+      "Sons/Musicas_Fundo/The-Builder(chosic.com).mp3",
+      "Sons/Musicas_Fundo/Volatile-Reaction(chosic.com).mp3",
+      "Sons/Musicas_Fundo/Plants_vs_Zombies_01.mp3",
+      "Sons/Musicas_Fundo/Plants_vs_Zombies_02.mp3",
+      "Sons/Musicas_Fundo/Plants_vs_Zombies_03.mp3",
+      "Sons/Musicas_Fundo/Plants_vs_Zombies_04.mp3",
+      "Sons/Musicas_Fundo/Plants_vs_Zombies_05.mp3"
+    ],
+    "caminho_som_erro": "",
+    "caminho_som_sucesso": ""
+  },
+  "usuario": {
+    "nome": "Sarruf",
+    "idade": 17
+  }
+}

@@ -1,0 +1,54 @@
+<!doctype html> <!-- vers�o dop HTML -->
+<html lang="pt-BR"> <!-- lingua que vai ser usada, e onde ficara todo o codigo htm(linguemgem de marca��o)l-->
+
+<head> <!-- cabe�a da pagina -->
+    <meta charset="ISO-8859-1"> <!-- codifica��o dos caracteres -->
+    <title> Cadastro de produtos </title> <!-- titulo que vai ficar na janela -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- meta dados -->
+    <link rel="stylesheet" href="cadpro.css"><!-- link esterno para o arquivo css -->
+    <link rel="shortcut icon" type="imagex/png" href="../Imgs/Manecreft_icone1.ico">
+</head>
+
+<body> <!-- corpo da pagina -->
+    <main> <!-- meio da pagina(maior parte do conteudo) -->
+        <h1> Cadastro de Produtos </h1>
+        <section>
+            <div class="alinha-esquerda">
+                <form id="cadastro_pro" method="post" action="cadatrar_pro.jsp">
+                    <label for="codigo"> Codigo: </label>
+                    <!-- label e o rotulo que fica(e o que e usado e o que significa) -->
+                    <input id="codigo" type="text" name="codigo" placeholder="digite aqui" size="35" maxlength="50"
+                        required><br>
+                    <!-- entrada -->
+                    <label for="nome"> Nome: </label>
+                    <input id="nome" type="text" name="nome" placeholder="digite aqui" size="35" maxlength="50"
+                        required><br>
+                    <label for="preco"> Preço: </label>
+                    <input id="preco" type="text" name="preco" placeholder="digite aqui" size="35" maxlength="50"
+                        pattern="[0-9]+([,\.][0-9]+)?" required><br>
+                    <label for="quantidade"> Quantidade: </label>
+                    <input id="quantidade" type="text" name="quantidade" placeholder="digite aqui" size="35"
+                        maxlength="50" pattern="[0-9]+([,\.][0-9]+)?" required><br>
+                    <input id="cadastro_pro" type="submit" value=" Salvar">
+                    <!-- quando clicado no botao salvar ja que � o tipo dele(sbmit) ele passe os dados para o form -->
+                </form>
+                <p> ATENÇÃO: Usar ponto em vez de virgula na interação com o preço. Obrigado </p>
+                <!-- dentro do form ele executara e passra a tabela de produto para o java e prosteriormente para o mysql -->
+            </div><!-- abilita uma classe que alinha para a esquerda e cria uma linha de cor X -->
+        </section>
+        <hr>
+        <section>
+            <div class="alinha-esquerda">
+                <form id="cadastro_pro" method="post" action="cadatrar_pro.jsp">
+                    <input type="hidden" name="rami" value="12345677">
+                    <input id="cadastro_pro" type="submit" value="Reencersão de Backup"><!-- comment -->
+                </form>
+                <p> Essa opção ira reencerir todos os produtos que estão salvos no Backup. </p>
+                <!-- dentro do form ele executara e passra a tabela de produto para o java e prosteriormente para o mysql -->
+            </div><!-- abilita uma classe que alinha para a esquerda e cria uma linha de cor X -->
+        </section>
+    </main>
+</body>
+
+</html>

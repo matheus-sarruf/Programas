@@ -1,0 +1,224 @@
+:root {
+    --primary-color: rgb(0, 155, 255);
+    --primary-dark: rgb(0, 125, 255);
+    --primary-light: rgba(0, 155, 255, 0.9);
+    --secondary-color: rgb(0, 221, 255);
+    --accent-color: rgb(0, 255, 200);
+    --background-dark: rgb(0, 50, 100);
+    --scrollbar-track: rgba(0, 125, 155, 1);
+    --text-color: rgba(0, 200, 255, 0.9);
+    --white: rgb(255, 255, 255);
+    --error-color: rgb(200, 50, 50);
+
+    --border-radius: 20px;
+    --shadow-glow: 0px 0px 4px 1px rgb(0, 155, 235);
+    --shadow-light: 0px 0px 2px 1px var(--primary-color);
+    --shadow-hover: 0px 0px 2px 1px var(--accent-color);
+}
+
+html {
+    background-color: blue;
+}
+
+body {
+    color: var(--text-color);
+}
+
+body::-webkit-scrollbar {
+    background-color: var(--background-dark);
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track);
+    border-radius: var(--border-radius);
+    margin: 1px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 155, 200);
+    border: solid 1px rgb(222, 222, 222);
+    border-radius: var(--border-radius);
+}
+
+/* bases */
+
+.componente-base {
+    border: 1px solid var(--primary-color);
+    background-color: rgba(0, 155, 255, 0.6);
+    box-shadow: var(--shadow-glow);
+}
+
+.botao-base {
+    color: var(--secondary-color);
+    background-color: rgba(0, 190, 255, 0.65);
+    border: 1px solid var(--primary-color);
+    box-shadow: var(--shadow-light);
+    transition: all 0.3s ease;
+}
+
+.botao-base:hover {
+    color: rgb(0, 255, 0);
+    background-color: rgba(15, 255, 255, 0.5);
+    text-shadow: 1px 1px 1px var(--error-color);
+    border: 1px solid var(--accent-color);
+    box-shadow: var(--shadow-hover);
+}
+
+.botao-ativado {
+    color: rgb(25, 215, 200);
+    border: 1px solid var(--white);
+    box-shadow: 0px 0px 4px 1px rgb(250, 250, 250);
+    background-color: rgba(0, 200, 190, 0.6);
+}
+
+/* Butoes de icones */
+
+button#tema_icone,
+button#butoes_tema_icone,
+button#informacoes_icone {
+    border: 1px solid var(--primary-dark);
+    box-shadow: var(--shadow-glow);
+    background-color: rgba(0, 155, 255, 0.55);
+    transition: background-color 0.3s ease;
+}
+
+button#tema_icone:hover,
+button#butoes_tema_icone:hover,
+button#informacoes_icone:hover {
+    background-color: rgba(0, 155, 255, 0.65);
+}
+
+/*  temas e butoes temas (fixed) */
+
+div#tema_opcoes,
+div#butoes_tema_opcoes {
+    border: 1px solid var(--primary-color);
+    background-color: rgba(0, 155, 255, 0.5);
+    box-shadow: var(--shadow-glow);
+}
+
+div#tema_opcoes button,
+div#butoes_tema_opcoes button {
+    color: var(--secondary-color);
+    background-color: rgba(0, 190, 255, 0.65);
+    border: 1px solid var(--primary-color);
+    box-shadow: var(--shadow-light);
+    transition: all 0.3s ease;
+}
+
+div#tema_opcoes button:hover,
+div#butoes_tema_opcoes button:hover {
+    color: rgb(0, 255, 0);
+    background-color: rgba(15, 255, 255, 0.5);
+    text-shadow: 1px 1px 1px var(--error-color);
+    border: 1px solid var(--accent-color);
+    box-shadow: var(--shadow-hover);
+}
+
+div#tema_opcoes button.ativado,
+div#butoes_tema_opcoes button.ativado {
+    color: rgb(25, 215, 200);
+    border: 1px solid var(--white);
+    box-shadow: 0px 0px 4px 1px rgb(250, 250, 250);
+    background-color: rgba(0, 200, 190, 0.6);
+}
+
+/* fixed informaçoes */
+
+div#infoDiv {
+    border: 2px solid var(--primary-color);
+    background-color: rgba(0, 155, 215, 0.8);
+}
+
+div#infoDiv button#fecharInfo {
+    border: 1px solid var(--error-color);
+    background-color: rgba(255, 0, 0, 0.8);
+    transition: background-color 0.3s ease;
+}
+
+div#infoDiv button#fecharInfo:hover {
+    background-color: rgba(255, 0, 0, 1);
+}
+
+div#infoDiv h2 {
+    color: rgb(0, 179, 255);
+}
+
+.infoDivGuardarBotoes1 button {
+    background-color: rgba(0, 155, 255, 0.4);
+    border: 1px solid rgba(0, 180, 255, 0.9);
+    transition: all 0.3s ease;
+}
+
+.infoDivGuardarBotoes1 button:hover {
+    background-color: rgba(0, 155, 255, 0.6);
+    border: 1px solid rgb(0, 204, 255);
+}
+
+input[type="range"]#volumeSlider::-webkit-slider-runnable-track {
+    background: rgba(0, 180, 255, 0.6);
+    height: 10px;
+    border-radius: 5px;
+}
+
+input[type="range"]#volumeSlider::-webkit-slider-thumb {
+    appearance: none;
+    background: rgba(0, 180, 255, 0.6);
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    margin-top: -3px;
+}
+
+/* principal layout */
+
+header, button#menu_icone {
+    border: 1px solid var(--primary-color);
+    background-color: rgba(0, 155, 255, 0.6);
+    box-shadow: var(--shadow-glow);
+}
+
+header h1 {
+    text-shadow: -3px 3px 1px rgb(0, 155, 0);
+}
+
+nav>ul>li>button {
+    color: rgba(0, 221, 255, 0.9);
+    background-color: rgba(0, 190, 255, 0.4);
+    box-shadow: 0px 1px 2px 1px var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+nav>ul>li>button:hover {
+    color: rgb(0, 255, 0);
+    background-color: rgba(15, 255, 255, 0.4);
+    text-shadow: 1px 1px 1px var(--error-color);
+    box-shadow: 0px 1px 2px 1px var(--accent-color);
+}
+
+nav>ul>li>button.ativado {
+    color: var(--secondary-color);
+    box-shadow: 0px 1px 2px 0.5px rgb(250, 250, 250);
+    background-color: rgba(0, 155, 180, 0.4);
+}
+
+main {
+    border: 2px solid var(--primary-color);
+    box-shadow: 0px 0px 12px 0px rgb(0, 155, 235);
+}
+
+footer {
+    background-color: rgba(0, 155, 235, 0.4);
+}
+
+a {
+    color: rgb(0, 125, 232);
+    text-shadow: 1px 1px 1px black;
+}
+
+/* outros */
+
+.estrela {
+    box-shadow: 0 0 5px 1px rgba(0, 155, 255, 0.8);
+}

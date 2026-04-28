@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../comun.css">
+    <title>Exclusão de Produtos</title>
+</head>
+
+<body>
+    <header>
+        <h1>Exclusão de Produtos</h1>
+    </header>
+    <main>
+        <form id="excluir_produtos1" method="post" action="excluir.jsp">
+            <div id="alinha_pai">
+                <div class="alinha">
+                    <label for="codigo">Código:</label>
+                </div>
+                <div id="inputs" class="alinha">
+                    <input type="text" id="codigo" name="codigo" placeholder="   digite o código aqui"
+                        pattern="[0-9]+([0-9]+)?" required>
+                </div>
+            </div>
+            <p><input type="submit" id="excluir" value="Excluir"></p>
+        </form>
+        <hr>
+        <form id="excluir_produtos2" method="post" action="excluir.jsp">
+            <input type="hidden" id="variavel" name="variavel" value="12345677">
+            <input type="submit" id="exclusao" value="EXCLUSÃO">
+            <p>
+                ⚠ Atenção ⚠: Ao clicar no botão EXCLUSÃO ele ira apagar todos os dados do banco de dados.
+            </p>
+        </form>
+    </main>
+    <script src="../comum.js"></script>
+    <script>
+        if (document.documentElement.clientWidth < 850) {
+            document.getElementById('alinha_pai').innerHTML = `
+            <div id="alinha_pai">
+                <div class="alinha">
+                    <label for="codigo">Código:</label>
+                    <input type="text" id="codigo" name="codigo" placeholder="   digite o código aqui"
+                        pattern="[0-9]+([0-9]+)?" required>
+            </div>
+                `
+        }
+    </script>
+</body>
+
+</html>

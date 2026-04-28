@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <title>Testando CSS</title>
+    <link rel="shortcut icon" type="imagex/png"
+        href="https://cdn2.steamgriddb.com/icon/03ff5913b0517be4231fee8f421f2699/32/16x16.png">
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            background-image: url(https://cdn.wallpapersafari.com/24/67/Vx2djE.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: Arial, Helvetica, sans-serif;
+            color: aqua;
+            text-shadow: 2px 2px 1px black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        header {
+            font-size: xx-large;
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            margin: 20px;
+        }
+
+
+        main {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 2px 2px 4px 2px black;
+            background-color: rgba(20, 160, 260, 0.3);
+            border-radius: 15px;
+            padding: 15px;
+        }
+
+
+        img {
+            border: 2px solid whitesmoke;
+            box-shadow: 0px 0px 5px 8px rgb(150, 150, 150);
+            border-radius: 50px 25px 50px 25px;
+            min-width: 600px;
+            max-height: 600PX;
+            transform: scale(0.6);
+            transition: 5s linear;
+        }
+
+
+        img:hover {
+            transform: scale(0.7);
+            transition: 1s linear;
+        }
+
+
+        hr {}
+
+
+        iframe {
+            margin-top: 50cap;
+            border: 2px solid rgba(0, 210, 143, 0.63);
+            box-shadow: 0px 0px 2px 3px black;
+            border-radius: 10px;
+        }
+
+
+        .arrumaLinks {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin-top: 25px;
+            gap: 25px;
+            border-radius: 15px;
+            padding: 10px 20px 10px 20px;
+            background-color: rgba(127, 255, 212, 0.209);
+            border: 1px solid black;
+        }
+
+
+        .linkrs {
+            display: flex;
+            gap: 20px;
+
+
+
+
+            & a {
+                padding: 10px;
+                border-radius: 1px 10px 1px 10px;
+                text-decoration: none;
+                text-shadow: 1px 1px 1px black;
+            }
+        }
+
+
+        a#um {
+            background-color: blue;
+            color: red;
+            border: 3px solid royalblue;
+            transform: scale(1);
+            transition: transform 3s linear, background-color 3s linear;
+        }
+
+
+        a#um:hover {
+            transform: scale(1.4);
+            background-color: aqua;
+            transition: transform 2s linear, background-color 2s linear;
+        }
+
+
+        a#dois {
+            background-color: red;
+            color: royalblue;
+            border: 3px solid aqua;
+            transform: scale(1);
+            transition: transform 2s linear, background-color 2s linear;
+        }
+
+
+        a#dois:hover {
+            transform: scale(0.8);
+            background-color: blue;
+            transition: transform 3s linear, background-color 3s linear;
+        }
+
+
+        a#tres {
+            background-color: royalblue;
+            color: aqua;
+            border: 3px solid blue;
+            transition: rotate(0deg);
+            transition: transform 3s linear, background-color 3s linear;
+        }
+
+
+        a#tres:hover {
+            background-color: red;
+            transform: rotate(360deg);
+            transition: transform 2s linear, background-color 2s linear;
+        }
+
+
+        a#quatro {
+            background-color: aqua;
+            color: blue;
+            border: 3px solid red;
+            transform: translateY(0px);
+            transition: transform 2s linear, background-color 2s linear;
+        }
+
+
+        a#quatro:hover {
+            background-color: royalblue;
+            transform: translateY(-20px);
+            transition: transform 1s linear, background-color 1s linear;
+        }
+
+
+        .butoes {
+            margin-top: 25px;
+            display: flex;
+            gap: 20px;
+
+
+            & a>button {
+                padding: 30px;
+                border-radius: 10px 1px 10px 1px;
+                text-decoration: none;
+                text-shadow: 1px 1px 1px black;
+                cursor: pointer;
+            }
+        }
+
+
+        a#cinco>button {
+            background-image: url("https://i.pinimg.com/736x/55/4b/01/554b0114cb18013d4f559a4010eb6465.jpg");
+            background-position: center;
+            background-size: 25%;
+            color: blue;
+            transform: translateY(0px);
+            transition: transform 2s linear, background-color 2s linear;
+        }
+
+
+        a#cinco:hover>button {
+            transform: translateY(20px);
+            transition: transform 1s linear, background-color 2s linear;
+            /*
+            transform: rotate3d(1, 1, 1, 0deg) matrix3d(1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 10, 0, 1.1);
+            1°: faz ele funcionar
+            2°: faz ele esticar do x até o eixo y alocado, como se tivesse o deitado e lavantado da esquerda para a direita, quanto maior, maior o efeito
+            3°: faz ele esticar no eixo x, até o eixo x alocado, como se puchasse as bordas até o local, quanto maior, maior o efeito
+            4°: faz ele esticar no eixo z, até o eixo z alocado, como se virasse leda de lado e o esticasse,quanto maior, maior o efeito
+            5°: faz ele planar no eixo x, como se deitasse ele
+            6°: faz ele aumentar a altura
+            7°: faz ele funcionar
+            1°: faz ele funcionar
+            1°: faz ele funcionar
+            1°: faz ele funcionar
+            1°: faz ele funcionar
+            1°: faz ele funcionar
+            1°: faz ele funcionar
+            1°: faz ele funcionar
+            1°: faz ele funcionar
+            1°: faz ele funcionar
+            1°: faz ele funcionar
+            */
+        }
+
+
+        a#seis>button {
+            background-image: url("https://c.tenor.com/ADDlSa5adxwAAAAd/tenor.gif");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            color: blue;
+            transform: rotate(0deg);
+            transition: transform 2s linear;
+
+
+        }
+
+
+        a#seis:hover>button {
+            transform: rotate(-180deg);
+            transition: transform 1s linear;
+        }
+
+
+        a#seis:hover~a#sete>button {
+            transform: rotate(180deg);
+            transition: transform 1s linear;
+        }
+
+
+        a#sete>button {
+            background-image: url("https://i.pinimg.com/originals/1b/bf/db/1bbfdbec768e6db72955c78bf2c7fc63.gif");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            color: blue;
+            transform: rotate(0deg);
+            transform: rotateY(0deg);
+            transition: transform 2s linear;
+        }
+
+
+        a#sete:hover>button {
+            transform: rotateY(360deg);
+            transition: transform 1s linear;
+        }
+
+
+        a#oito>button {
+            background-image: url("https://i.pinimg.com/736x/2e/88/d1/2e88d14b927650dbe44e04013fd3ae99.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            color: blue;
+            transform: rotate(0deg);
+            transform: rotateX(0deg);
+            transition: transform 2s linear, background-image 2s linear;
+        }
+
+
+        a#oito:hover>button {
+            background-image: url("https://i.pinimg.com/736x/3d/5e/ec/3d5eec3eeb7e870a1c1a7d535a818af3.jpg");
+            transform: rotateX(360deg);
+            transition: transform 1s linear, background-image 1s linear;
+        }
+    </style>
+</head>
+
+
+<body>
+    <header>Testando CSS</header>
+    <main>
+        <div class="arrumaLinks">
+            <div class="linkrs">
+                <a id="um" href="#"
+                    onclick="mudarImagem('https://i.pinimg.com/736x/55/4b/01/554b0114cb18013d4f559a4010eb6465.jpg')">imagem1</a>
+
+
+                <a id="dois" href="#"
+                    onclick="mudarImagem('https://i.pinimg.com/736x/2e/88/d1/2e88d14b927650dbe44e04013fd3ae99.jpg')">imagem2</a>
+
+
+                <a id="tres" href="#"
+                    onclick="mudarImagem('https://i.pinimg.com/736x/3d/5e/ec/3d5eec3eeb7e870a1c1a7d535a818af3.jpg')">imagem3</a>
+
+
+                <a id="quatro" href="#"
+                    onclick="mudarImagem('https://i.pinimg.com/736x/a9/18/5d/a9185dd04fd6d2e065477066131bb348.jpg')">imagem4</a>
+            </div>
+            <div class="butoes">
+                <a id="cinco" href="#"
+                    onclick="mudarImagem('https://c.tenor.com/ADDlSa5adxwAAAAd/tenor.gif')"><button>gif5</button></a>
+
+
+                <a id="seis" href="#"
+                    onclick="mudarImagem('https://i.pinimg.com/originals/1b/bf/db/1bbfdbec768e6db72955c78bf2c7fc63.gif')"><button>gif6</button></a>
+
+
+                <a id="sete" href="#"
+                    onclick="mudarImagem('https://i.giphy.com/3og0IB9VkeQNQKIzKg.webp')"><button>gif7</button></a>
+
+
+                <a id="oito" href="#"
+                    onclick="mudarImagem('https://i.giphy.com/LqsGKpRRq2yFMxdzFt.webp')"><button>gif8</button></a>
+            </div>
+        </div>
+        <img id="local" name="local" src="https://i.pinimg.com/736x/55/4b/01/554b0114cb18013d4f559a4010eb6465.jpg">
+        <hr>
+        <iframe id="janela" name="janela" src="#" width="800px" height="500px"></iframe>
+    </main>
+</body>
+<script>
+    function mudarImagem(src) {
+        document.getElementById("local").src = src;
+        document.getElementById("janela").src = src;
+    }
+
+
+    function mudarJanela(src) {
+        document.getElementById("janela").src = src;
+    }
+</script>
+
+
+</html>
+<!DOCTYPE html>

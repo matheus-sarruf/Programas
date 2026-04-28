@@ -1,0 +1,278 @@
+html,
+body {
+    overflow-x: hidden;
+    /*o que passar e cortado*/
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    line-height: 1.5;
+    font-family: Arial, sans-serif;
+    color: #00ffee;
+    text-shadow: 2px 2px 1px black;
+    background-image: linear-gradient(to top left, rgb(0 0 60), #005467, rgb(0, 5, 0));
+}
+
+nav {
+    width: 70%;
+    padding: 15px 0px 15px 0px;
+    margin: 0 auto;
+    margin-top: 25px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px 1px rgb(40, 40, 40);
+}
+
+ul#nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 20px;
+    width: fit-content;
+    margin: 0 auto;
+    border-radius: 10px;
+    list-style: none;
+}
+
+ul#nav li {
+    float: inline-start;
+    text-align: center;
+}
+
+ul#nav li a {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #00ff4c;
+    text-shadow: 2px 2px 1px rgb(0, 3, 92);
+    box-shadow: 1px 2px 3px 1px black;
+    transform: scale(0.95);
+    transition: transform 0.5s;
+}
+
+ul#nav li a:hover {
+    color: blue;
+    text-shadow: 2px 1px 1px #00ffee;
+    background-color: #00b3db60;
+    transform: scale(1);
+    transition: transform 0.3s;
+}
+
+/*diz quando o link está ativo*/
+.active {
+    background-color: #279db8;
+}
+
+h1 {
+    margin: 35px;
+    font-size: 30px;
+    color: #00fff2;
+    text-align: center;
+}
+
+main {
+    width: fit-content;
+    max-width: 95%;
+    height: auto;
+    margin: 40px;
+    padding: 40px;
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+
+/*organização da página*/
+.organiza {
+    margin: 50px 25px;
+}
+
+/*organização da páragrafo*/
+.organiza p {
+    text-align: justify;
+}
+
+/*organização da lista*/
+.organiza ul {
+    text-align: justify;
+    padding-left: 25px;
+}
+
+/*ajustamento da imagem*/
+.img_ajust {
+    float: right;
+    max-width: 60%;
+    height: auto;
+    margin: 25px;
+}
+
+/*ajustando a imagem da classe img_ajust*/
+.img_ajust img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px 1px rgba(0, 53, 186, 0.65);
+}
+
+h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #00ff4c;
+}
+
+li {
+    margin-top: 5px;
+}
+
+Strong {
+    font-weight: bold;
+    color: #00d0ff;
+    text-decoration: underline;
+}
+
+b {
+    font-weight: bold;
+    color: #00d0ff;
+}
+
+hr {
+    width: 100%;
+    margin: 25px auto;
+    border: 1px solid #07d6edd2;
+}
+
+/*organização do video*/
+.video_item {
+    text-align: center;
+    color: whitesmoke;
+}
+
+/*configuração do video*/
+.video_config {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin: 25 auto;
+}
+
+iframe {
+    width: 650px;
+    height: 400px;
+}
+
+footer {
+    width: 100%;
+    padding: 20px;
+    margin: 1px;
+    text-align: center;
+    background-color: #00e5ff67;
+}
+
+section#confira p {
+    font-size: 18px;
+    margin: 0px 0px 3px 41px;
+}
+
+section#confira a {
+    color: #00ffee;
+    text-shadow: 1px 1px 2px rgb(0, 68, 255);
+}
+
+section#confira a:hover {
+    color: #00ff4c;
+}
+
+/*altera os linkes*/
+.linkers a {
+    color: rgb(0, 124, 232);
+    text-shadow: 1px 1px 1px black;
+}
+
+/*altera os linker quando voce passa o mouse*/
+.linkers a:hover {
+    color: rgb(255, 0, 0);
+}
+
+@media (max-width: 750px) {
+    nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: none !important;
+        background: transparent !important;
+        padding: 20px 25px !important;
+        box-shadow: 2px 2px 4px 1px rgb(40, 40, 40) !important;
+
+    }
+
+    ul#nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 10px
+    }
+
+    ul#nav li {
+        width: 90%;
+        text-align: center;
+        justify-items: center;
+        margin: 5px 0;
+    }
+
+    ul#nav li a {
+        display: block;
+        width: 90%;
+        padding: 8px;
+    }
+
+    main {
+        width: 100% !important;
+        height: auto !important;
+        padding: 5px !important;
+        margin: 20px auto;
+        margin-bottom: 60px;
+        box-shadow: none;
+        border-radius: 0px !important;
+        border-bottom: 1px solid #00b3db60;
+    }
+
+    .img_ajust {
+        max-width: 100% !important;
+        margin: 0px auto !important;
+        float: none !important;
+    }
+
+    .organiza {
+        margin: 10px !important;
+    }
+
+    .organiza ul {
+        padding-left: 15px !important;
+    }
+
+    iframe {
+        width: 380px;
+        height: 250px;
+    }
+
+    section#confira p {
+        font-size: 18px;
+        margin: 0px 0px 3px 3px;
+    }
+
+    footer {
+        padding: 20px 0px !important;
+        margin: 1px auto !important;
+    }
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../comun.css">
+    <title>Alterasão de Produtos</title>
+</head>
+
+<body>
+    <header>
+        <h1>Alterasão de Produtos</h1>
+    </header>
+    <main>
+        <form id="alterar_produtos" method="post" action="alterar.jsp">
+            <div id="alinha_pai">
+                <div class="alinha">
+                    <label for="codigo">Código:</label>
+                </div>
+                <div id="inputs" class="alinha">
+                    <input type="text" id="codigo" name="codigo" placeholder="   digite o código aqui"
+                        pattern="[0-9]+([0-9]+)?" required>
+                </div>
+            </div>
+            <p><input type="submit" id="alterar" value="Alterar"></p>
+        </form>
+    </main>
+    <script src="../comum.js"></script>
+    <script>
+        if (document.documentElement.clientWidth < 850) {
+            document.getElementById('alinha_pai').innerHTML = `
+            <div id="alinha_pai">
+                <div class="alinha">
+                    <label for="codigo">Código:</label>
+                    <input type="text" id="codigo" name="codigo" placeholder="   digite o código aqui"
+                        pattern="[0-9]+([0-9]+)?" required>
+            </div>
+                `
+        }
+    </script>
+</body>
+
+</html>

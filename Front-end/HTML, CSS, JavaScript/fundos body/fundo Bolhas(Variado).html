@@ -1,0 +1,79 @@
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #06b0da 0%, #071e8f 100%);
+    overflow: hidden;
+}
+
+.bubbles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: float linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const bubblesContainer = document.createElement('div');
+    bubblesContainer.className = 'bubbles';
+    document.body.appendChild(bubblesContainer);
+
+    function createBubble() {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        
+        // Tamanho aleatório
+        const size = Math.random() * 100 + 50;
+        bubble.style.width = size + 'px';
+        bubble.style.height = size + 'px';
+        
+        // Posição horizontal aleatória
+        bubble.style.left = Math.random() * 100 + '%';
+        
+        // Duração e delay aleatórios
+        const duration = Math.random() * 20 + 10;
+        bubble.style.animationDuration = duration + 's';
+        bubble.style.animationDelay = Math.random() * 5 + 's';
+        
+        bubblesContainer.appendChild(bubble);
+        
+        // Remover bolha após animação
+        setTimeout(() => {
+            bubble.remove();
+        }, duration * 1000);
+    }
+    
+    // Criar bolhas continuamente
+    setInterval(createBubble, 500);
+});
+</script>

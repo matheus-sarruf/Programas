@@ -1,0 +1,189 @@
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+/*cursore e suas classes*/
+
+label {
+    height: 21px;
+}
+
+/*cursore e suas classes*/
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.2;
+    font-family: Arial, sans-serif;
+    align-items: center;
+    color: navy;
+    background-color: rgba(0, 155, 235, 0.4);
+    border-radius: 15px;
+    background-attachment: fixed;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('Imgs/Crepper_Azul.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    filter: blur(2px);
+    opacity: 0.3;
+    z-index: -1;
+}
+
+header {
+    padding: 20px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+header h1 {
+    text-shadow: -3px 3px 1px rgb(0, 0, 155);
+    animation: text-shadow 5s infinite linear, pulsa 3s infinite linear;
+}
+
+main {
+    width: 100%;
+    padding: 25px 30px;
+    height: 750px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+    margin: 15px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 255, 0.5);
+    background-color: rgba(0, 155, 235, 0.5);
+}
+
+div#alinha_pai {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.alinha {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    gap: 10px;
+}
+
+div#inputs {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+}
+
+.alinha label {
+    font-weight: bold;
+    color: navy;
+}
+
+.alinha input {
+    padding: 5px;
+    border: 2px solid blue;
+    border-radius: 10px;
+    outline: none;
+    background: rgba(0, 200, 255, 0.2);
+    font-size: 15px;
+    width: 100%;
+}
+
+.alinha input:focus {
+    border-color: cyan;
+    box-shadow: 0 0 5px cyan;
+}
+
+input[type=text] {
+    color: aqua;
+    width: 100%;
+    height: 21px;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+input::placeholder {
+    color: aqua;
+}
+
+input[type="submit"] {
+    border-radius: 8px;
+    padding: 10px;
+    background: blue;
+    color: white;
+    border: white 1px solid;
+    transform: scale(1);
+    transition: all 0.6s;
+}
+
+input[type="submit"]:hover {
+    background: cyan;
+    color: navy;
+    border: navy 1px solid;
+    transform: scale(1.01);
+    transition: all 0.5s;
+}
+
+hr {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 255, 0.5);
+    margin: 15px 0;
+    border-radius: 10px;
+}
+
+@keyframes text-shadow {
+    0% {
+        text-shadow: -2px 2px 1px rgb(255, 0, 0);
+    }
+
+    33% {
+        text-shadow: -2px 2px 1px rgb(0, 255, 0);
+    }
+
+    66% {
+        text-shadow: -2px 2px 1px rgb(0, 0, 255);
+    }
+
+    100% {
+        text-shadow: -2px 2px 1px rgb(255, 0, 0);
+    }
+}
+
+@keyframes pulsa {
+    0% {
+        transform: scale(0.95);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(0.95);
+    }
+}
+
+@media (max-width: 850px) {
+    .alinha {
+        gap: 10px 0px;
+        margin: 5px;
+    }
+}

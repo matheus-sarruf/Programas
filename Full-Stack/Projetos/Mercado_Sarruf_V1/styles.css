@@ -1,0 +1,180 @@
+/*onde ficara todo o codigo css(linguagem de estilização), observe que ate o comentario é diferente*/
+html,
+body {
+    overflow-x: hidden;
+}
+
+/*deixa visualmente estavel em telas menores*/
+* {
+    margin: 0 auto;
+    /* margem automatica nos lados e grudada no topo*/
+}
+
+/*todos os blocos vao sofre as modificações*/
+@media (max-width: 700px) {
+
+    header,
+    nav {
+        width: 100%;
+        /* Ajusta para 100% em telas menores */
+        padding: 10px;
+        /* Ajuste o padding, se necessário */
+    }
+
+    nav {
+        flex-direction: column;
+        /* Mantém a direção da navegação em coluna */
+        align-items: flex-start;
+        /* Alinha os itens à esquerda */
+    }
+
+    nav a {
+        width: 80%;
+        /* Faz com que os links ocupem 80% da largura */
+        margin: 5px;
+        /* Espaço entre os links */
+    }
+}
+
+/*modifica os conteiner quando a tela é menor*/
+body {
+    line-height: 1.1;
+    max-width: 1980px;
+    /*deixa a lagura maxima de X pxs*/
+    width: 100%;
+    /*ocupara X% da largura da tela, no caso 100%*/
+    height: 100%;
+    /*autura pode ser X pxs ou em X%*/
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    /*muda as fontes das letras de todo o corpo*/
+    color: #00ffee;
+    /*cor especificamente dos caracteres dentro so corpo*/
+    text-shadow: 2px 2px 1px black;
+    /*muda a cor das laterais da letras de todo o corpo, o 1 é o quão a direita fica os px, o 2 é o quão para baixo fica os px e o 3 é o quão embaçado fica os px*/
+    background-image: linear-gradient(to top left, rgb(0, 100, 150), rgb(0, 25, 50), rgb(0, 100, 150));
+    /*muda a cor de fundo do corpo da pagina, mesclado cores*/
+    /*cria um efeito de sombra na caixa, sendo o 1 o quão para baixo vai, o 2 distancia para a dirita, o 3 a opacidade, e o 4 pixel o tamanho*/
+    border-radius: 6px;
+    /*arrendonda as bordas caixa usando pxs*/
+}
+
+header {
+    width: 90%;
+    /*faz com que aquele espaço ocupe 90% das laterais deixando no centro(sobra 5% na esqueda e 5% na direita)*/
+    margin-top: 20px;
+    /*coloca uma margem de 15 pixel no topo*/
+    padding: 10px;
+    /*aumento do fundo em volta da limitacao posta(aumenta o limite, ex: onde a cor pega), sendo a largura e autura X para tudo*/
+    background-color: rgba(0, 80, 160, 0.5);
+    /*muda a cor de fundo do cabeçario*/
+    box-shadow: 2px 1px 3px 0.5px white;
+    /*cria um efeito de sombra na caixa, sendo o 1 o quão para direita vai, o 2 o queão para baixo cai, o 3 a opacidade, e o 4 pixel o tamanho*/
+    border-radius: 10px 10px 0px 0px;
+    /*arrendonda a borda do formulário usando pxs, em sentido horario, começando da esqueda superior até o inferior esquerdo*/
+}
+
+p#autor {
+    text-align: center;
+}
+
+/*é usado o # para identificar o id que sera usado, no caso "autor", esta sendo modificado somente esse p usando id e não todos os p*/
+nav {
+    width: 90%;
+    padding: 8px 10px;
+    /*aumento do fundo em volta da limitacao posta(aumenta o limite, ex: onde a cor pega), sendo o 1 a altura e o 2 a largura*/
+    font-size: 18px;
+    /*muda o tamanho da letra usando px, tambem pode ser auterado usando %*/
+    display: flex;
+    /*deixa o diplay/caixa(nav) flexivel podendo mudar o conteudo para o canto direito ou centralizados e etc.*/
+    align-items: center;
+    /*deixar os itens igualmente alinhados dentro da caixa, só da para usar ABILITANDO O DYSPLAY FLEX */
+    background-color: rgba(0, 80, 160, 0.5);
+    box-shadow: 2px 1px 3px 0.5px white;
+    border-radius: 0px 0px 10px 10px;
+}
+
+nav a {
+    padding: 7px 18px;
+    text-decoration: none;
+    /*por padrão os links vem soblinhados, isso o retira*/
+    color: #00ffee;
+    box-shadow: 0.5px 0.5px 1px 0.5px rgb(0, 0, 0);
+    border-radius: 5px;
+    background-color: rgba(0, 80, 180, 0.8);
+    transform: scale(1);
+    transition: transform 0.5s;
+}
+
+/*modifica os links do menu de navegação*/
+nav a.ativado {
+    color: #00ff44;
+    background-color: rgba(0, 175, 255, 0.8);
+    border-radius: 5px;
+}
+
+/*indica qual pagina esta visitada*/
+nav a:hover {
+    text-shadow: 2px 2px 1px mediumblue;
+    color: orangered;
+    background-color: mediumblue;
+    transform: scale(1.04);
+    transition: transform 0.5s;
+}
+
+/*modifica os links so menu de navagação quando passar o mouse por cima(do link)*/
+main {
+    display: flex;
+    width: 85%;
+    height: 100%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+footer {
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+    color: white;
+    background-color: rgba(5, 100, 150, 0.8);
+    box-shadow: 1px 1px 1px 2px whitesmoke;
+}
+
+b {
+    color: #00ffee;
+}
+
+iframe {
+    width: 100%;
+    height: 600px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    border-style: solid;
+    box-shadow: 2px 2px 15px 0.5px rgb(255, 255, 255);
+}
+
+/*classes*/
+
+.centralizar {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    /*centraliza o texto*/
+}
+
+.conteiner-link {
+    a {
+        color: #00ffee;
+        /*por padro os links vem soblinhados, isso o retira*/
+        text-shadow: none;
+    }
+
+    /*muda os  links dendro da navegação*/
+    a:hover {
+        color: red;
+    }
+
+    /*quando o mause passar por cima do link*/
+}
+
+/*conteiner que estiliza os links*/
+/*/classes*/

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Mapa do SubNautica</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" type="imagex/png"
+            href="../Icones/Peixe_Olhudo.png">
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+            rel="stylesheet">
+
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+        <style>
+        html,
+        body {
+            overflow-x: hidden;
+        }
+
+        * {
+            margin: 0 auto;
+        }
+
+        @media (max-width: 700px) {
+            main img {
+                margin-top: 50px;
+                margin-right: 35px;
+                width: 90% !important;
+                height: auto !important;
+            }
+
+            main {
+                height: 650px !important;
+            }
+            
+            .conteudo {
+                flex-direction: column-reverse !important;
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            align-items: center;
+        }
+
+        h1 {
+            margin-top: 50px;
+            font-size: 30px;
+            color: #00fff2;
+            text-shadow: 2px 2px 4px rgb(0, 0, 0);
+            text-align: center;
+            padding: 14px 0;
+        }
+
+        main {
+            width: 100%;
+            height: auto;
+            padding: 50px 0px 50px 0px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main img {
+            border-radius: 25px;
+            border: 1px solid gray;
+            width: 55%;
+            height: 100%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #2b343567;
+        }
+
+        .linkers a {
+            color: rgb(0, 124, 232);
+            text-shadow: 1px 1px 1px black;
+            transition: font-size 20s ease-in-out;
+        }
+
+        .linkers a:hover {
+            color: rgb(255, 0, 0);
+        }
+
+        .link_zoa a:hover {
+            font-size: 500%;
+            color: white;
+        }
+
+        section#Voltar {
+            display: flex;
+            width: fit-content;
+            margin: 20px 0px 55px auto;
+            margin-left: calc(20vw);
+            background-color: rgb(25, 155, 155);
+            border-radius: 10px;
+            transition: background-color 0.3s linear;
+        }
+
+        section#Voltar a {
+            padding: 10px 55px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s linear;
+        }
+
+        section#Voltar:hover {
+            background-color: rgb(80, 235, 240);
+            color: black;
+        }
+
+    </style>
+    </head>
+
+    <body>
+        <header>
+            <h1> Mapa do SubNautica </h1>
+        </header>
+        <main>
+            <img src="mapa-subnatica1.png" width="1000" height="1000"
+                alt="Mapa de SubNautica">
+        </main>
+
+        <section id="Voltar">
+            <a href="../index.html#mapas"> <i class="fas fa-arrow-left"></i> Voltar </a>
+        </section>
+        
+        <footer>
+            <div class="linkers">
+                <a href="mapa-subnatica1.png"
+                    download="mapa-subnatica1.png">Download do Mapa</a>
+            </div>
+            <br>
+            <div class="linkers">
+                <div class="link_zoa">
+                    <p> &copy; 2025 Site Sarruf - Todos os direitos reservados.
+                        Desenvolvido por <a
+                            href="https://github.com/matheus-sarruf">
+                            @matheus-sarruf </a></p>
+                </div>
+            </div>
+
+        </footer>
+    </body>
+
+</html>

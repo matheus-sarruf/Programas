@@ -1,0 +1,41 @@
+                                obs a prova 1 foi na folha :/
+
+1) Ler um valor e escrever se é positivo ou negativo (considere o valor zero como
+positivo).
+Exemplo:
+Numero Resposta
+10 positivo
+-3 negativo
+0 positivo
+2) As maçãs custam R$ 2,50 cada se forem compradas menos de uma dúzia, e R$ 2,00
+se forem compradas pelo menos 12. Escreva um programa que leia o número de maçãs
+compradas, calcule e escreva o custo total da compra.
+Exemplo:
+Quantidade de maçãs Custo
+6 R$ 15
+15 R$ 30
+11 R$ 27,50
+
+3) Faça um algoritmo para ler as 4 notas obtidas por um aluno. Calcular a média
+aritmética simples e escrever o conceito do aluno de acordo com a tabela de conceitos
+mais abaixo:
+A atribuição de conceitos obedece a tabela abaixo:
+Média de Aproveitamento Conceito
+> = 9,0 A
+> = 7,5 e < 9,0 B
+> = 6,0 e < 7,5 C
+< 6,0 D
+
+Exemplo:
+Nota 1 Nota 2 Nota 3 Nota 4 Média Conceito
+6 4 8 10 7 C
+10 8 7 6 7,75 B
+10 9 9 8 9 A
+
+4) Ler quatro valores (considere que não serão lidos valores iguais) e escrever o
+maior deles.
+Exemplo:
+Valor 1 Valor 2 Valor 3 Valor 4 Maior
+6 4 3 2 6
+5 3 7 9 9
+4 6 2 1 6

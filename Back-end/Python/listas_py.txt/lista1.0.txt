@@ -1,0 +1,75 @@
+
+//Curso Técnico Integrado em Informática
+//Disciplina: Linguagem de Programação I
+//Prof.: *Luís / Roberto
+
+1) Faça um programa que leia o nome de uma pessoa e mostre uma mensagem de boas
+vindas para ela:
+Ex: Qual é o seu nome?
+João da Silva Olá João da Silva, é um prazer te conhecer!
+
+2) Crie um programa que leia o nome e o salário de um funcionário, mostrando no final
+uma mensagem.
+Ex: Nome do Funcionário: Maria do Carmo
+Salário: 1850,45
+O funcionário Maria do Carmo tem um salário de R$1850,45.
+
+3) Desenvolva um algoritmo que leia dois números inteiros e mostre o somatório entre
+eles.
+Ex: Digite um valor: 8
+Digite outro valor: 5
+A soma entre 8 e 5 é igual a 13.
+
+4) Faça um programa que leia as duas notas de um aluno em uma matéria e mostre na
+tela a sua média na disciplina.
+Ex: Nota 1: 4.5
+Nota 2: 8.5
+A média entre 4.5 e 8.5 é igual a 6.5
+
+5) Faça um programa que leia um número inteiro e mostre o seu antecessor e seu
+sucessor.
+Ex: Digite um número: 9
+O antecessor de 9 é 8
+O sucessor de 9 é 10
+
+6) Crie um algoritmo que leia um número real e mostre na tela o seu dobro e a sua terça
+parte.
+Ex: Digite um número: 3.5
+O dobro de 3.5 é 7.0
+A terça parte de 3.5 é 1.16666
+
+7) Faça um algoritmo que leia quanto dinheiro uma pessoa tem na carteira (em R$) e
+mostre quantos dólares ela pode comprar. Considere US$1,00 = R$3,45.
+
+8) Construa um algoritmo que, tendo como dados de entrada dois pontos quaisquer no
+plano, P(x1,y1) e P(x2,y2), escreva a distância entre eles. A fórmula que efetua tal cálculo
+é: d = raiz((x2 - x1)² + (y2 - y1)²)
+
+9) Escreva um algoritmo que leia três números inteiros e positivos (A, B, C) e calcule a
+seguinte expressão:
+D = (R + S)/2, onde R = (A + B)² S = (B + C)²
+
+10) Faça um algoritmo que leia a largura e altura de uma parede, calcule e mostre a área
+a ser pintada e a quantidade de tinta necessária para o serviço, sabendo que cada litro de
+tinta pinta uma área de 2 metros quadrados.
+
+11) Faça um algoritmo que leia as 3 notas de um aluno e calcule a média final deste
+aluno. Considerar que a média é ponderada e que o peso das notas é: 2,3 e 5,
+respectivamente.
+
+12) Faça um algoritmo que leia o tempo de duração de um evento em uma fábrica
+expressa em segundos e mostre-o expresso em horas, minutos e segundos.
+
+13) O custo ao consumidor de um carro novo é a soma do custo de fábrica com a
+percentagem do distribuidor e dos impostos (aplicados ao custo de fábrica). Supondo que
+a percentagem do distribuidor seja de 28% e os impostos de 45%, escrever um algoritmo
+que leia o custo de fábrica de um carro e escreva o custo ao consumidor.
+
+14) Uma fábrica controla o tempo de trabalho sem acidentes pela quantidade de dias.
+Faça um algoritmo para converter este tempo em anos, meses e dias. Assuma que cada
+mês possui sempre 30 dias.
+
+15) Ler um número inteiro (assuma até três dígitos) e imprimir a saída da seguinte forma:
+CENTENA = x
+DEZENA = x
+UNIDADE = x
