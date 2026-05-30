@@ -43,7 +43,7 @@ button#tema_icone {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-image: url(Imgs/Sol-Lua.png);
+    background-image: url(../Imgs/Sol-Lua.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -108,7 +108,7 @@ button#butoes_tema_icone {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-image: url(Imgs/Quedro-e-Pincel.png);
+    background-image: url(../Imgs/Quedro-e-Pincel.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -169,7 +169,7 @@ button#informacoes_icone {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-image: url(Imgs/informacao.png);
+    background-image: url(../Imgs/Informacao.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -213,7 +213,7 @@ div#infoDiv button#fecharInfo {
     padding: 8px 13px;
     border: 1px solid black;
     border-radius: 0px 10px 0px 0px;
-    background-image: url(Imgs/X_Preto.png);
+    background-image: url(../Imgs/X_Preto.png);
     background-size: 25px 20px !important;
     background-repeat: no-repeat;
     background-position: center;
@@ -260,19 +260,19 @@ div#infoDiv p {
 }
 
 button#play_pause {
-    background-image: url(Imgs/Pause.png);
+    background-image: url(../Imgs/Pause.png);
     background-size: 35px 30px !important;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .pausar {
-    background-image: url(Imgs/Play.png) !important;
+    background-image: url(../Imgs/Play.png) !important;
     background-size: 35px 30px !important;
 }
 
 button#nova_musica {
-    background-image: url(Imgs/Pular.png);
+    background-image: url(../Imgs/Pular.png);
     background-size: 35px 30px !important;
     background-repeat: no-repeat;
     background-position: center;
@@ -280,7 +280,7 @@ button#nova_musica {
 }
 
 button#copiar_caminho {
-    background-image: url(Imgs/Copiar.png);
+    background-image: url(../Imgs/Copiar.png);
     background-size: 30px 28px !important;
     background-repeat: no-repeat;
     background-position: center;
@@ -330,7 +330,7 @@ header h1 {
 }
 
 div#gif_header {
-    background-image: url(Gifs/nyan-cat.gif);
+    background-image: url(../Gifs/nyan-cat.gif);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -491,7 +491,7 @@ body[tema="Tema_RGB"] {
 }
 
 body[tema="Imagem"] {
-    background-image: url('Imgs/sucuna.png');
+    background-image: url('../Imgs/sucuna.png');
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
@@ -499,7 +499,7 @@ body[tema="Imagem"] {
 }
 
 body[tema="Gif"] {
-    background-image: url('Gifs/Luffy.gif');
+    background-image: url('../Gifs/Luffy.gif');
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
@@ -737,7 +737,7 @@ body[tema="Tema_Moderno_Escuro"] {
     }
 
     body[tema="Imagem"] {
-        background-image: url('Imgs/Slay_The_Spire-O_Personagens.png');
+        background-image: url('../Imgs/Slay_The_Spire-O_Personagens.png');
         background-attachment: fixed;
         background-position: center;
         background-size: cover;
@@ -820,7 +820,7 @@ body[tema="Tema_Moderno_Escuro"] {
         height: 40px;
         border-radius: 15px;
         animation: none;
-        background-image: url(Imgs/Lista.png);
+        background-image: url(../Imgs/Lista.png);
         background-size: 45px 35px;
     }
 

@@ -1,7 +1,6 @@
 // Modulos/audio.js
 import { CONFIG } from '../Configuracoes/constantes.js';
 import { ServicoArmazenamento } from '../Servicos/armazenamento.js';
-
 export class GerenciadorAudio {
     constructor() {
         this.audioAtual = null;
@@ -54,8 +53,9 @@ export class GerenciadorAudio {
         if (!this.sonsCarregados) return;
 
         const som = this.sons[tipo];
+
         if (som) {
-            const volume = tipo === 'clique' ? 0.5 : 0.4;
+            const volume = tipo === 'clique' ? CONFIG.VOLUME.CLIQUE : CONFIG.VOLUME.HOVER;
             som.volume = volume;
             som.currentTime = 0;
             som.play().catch(e => console.warn(`Som ${tipo} não pôde ser reproduzido:`, e));
@@ -177,7 +177,10 @@ export class GerenciadorAudio {
 
     proximaMusica() {
         if (this.audioAtual) {
-            this.audioAtual.currentTime = this.audioAtual.duration - 1;
+            this.audioAtual.pause();
+            this.audioAtual.currentTime = 0;
+            this.audioAtual = null;
+            this._tocarMusicaAleatoria();
         }
     }
 

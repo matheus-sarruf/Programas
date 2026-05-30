@@ -48,7 +48,6 @@ class Application {
         try {
             // Mostrar loading (opcional)
             this._showLoading();
-
             // 1. Carregar dados da API
             const dados = await ServicoApi.carregarTodosDados();
 
@@ -215,7 +214,7 @@ class Application {
                 }
             }
         });
-    }
+    } 
 
     _configurarTemaBotoes() {
         const botoesTemaContainer = document.getElementById('butoes_tema_conteiner');

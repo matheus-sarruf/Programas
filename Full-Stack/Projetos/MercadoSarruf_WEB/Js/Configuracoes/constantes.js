@@ -26,8 +26,8 @@ export const CONFIG = {
 
     // Configurações de volume
     VOLUME: {
-        CLIQUE: 0.5,
-        HOVER: 0.4,
+        CLIQUE: 0.4,
+        HOVER: 0.3,
         MUSICA_FADE_DURATION: 3000,
         MUSICA_FADE_INTERVAL: 50
     },

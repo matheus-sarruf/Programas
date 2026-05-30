@@ -17,6 +17,11 @@ export class GerenciadorUI {
             fecharInfo: document.getElementById('fecharInfo'),
             informacoesIcone: document.getElementById('informacoes_icone')
         };
+        
+        // Bind dos métodos para remover listeners depois
+        this._handleVolumeChange = this._handleVolumeChange.bind(this);
+        this._handlePausarChange = this._handlePausarChange.bind(this);
+        this._handleMusicaChange = this._handleMusicaChange.bind(this);
     }
     
     init() {
@@ -36,6 +41,11 @@ export class GerenciadorUI {
                 this.esconderInfo();
             }
         });
+        
+        // Listeners para eventos que devem atualizar a UI
+        window.addEventListener('volumechange', this._handleVolumeChange);
+        window.addEventListener('pausarchange', this._handlePausarChange);
+        window.addEventListener('musicachange', this._handleMusicaChange);
     }
     
     verInfo() {
@@ -43,9 +53,11 @@ export class GerenciadorUI {
         
         this.infoVisivel = true;
         this.elementos.infoDiv.style.display = 'block';
-        this._atualizarConteudoInfo();
+        this._criarEstruturaInfo(); // Criar estrutura uma vez
+        this._atualizarDataHora(); // Atualizar data/hora inicial
         
-        this.infoInterval = setInterval(() => this._atualizarConteudoInfo(), 1000);
+        // Atualizar APENAS a data/hora a cada segundo
+        this.infoInterval = setInterval(() => this._atualizarDataHora(), 1000);
         
         setTimeout(() => {
             this.elementos.infoDiv.classList.add('mostrar');
@@ -63,6 +75,11 @@ export class GerenciadorUI {
             this.infoInterval = null;
         }
         
+        // Remover listeners de eventos quando a info está fechada
+        window.removeEventListener('volumechange', this._handleVolumeChange);
+        window.removeEventListener('pausarchange', this._handlePausarChange);
+        window.removeEventListener('musicachange', this._handleMusicaChange);
+        
         setTimeout(() => {
             this.elementos.infoDiv.style.display = 'none';
         }, 500);
@@ -78,16 +95,16 @@ export class GerenciadorUI {
         this.audioManager?.executarSom('clique');
     }
     
-    _atualizarConteudoInfo() {
+    _criarEstruturaInfo() {
         if (!this.elementos.infoTexto) return;
         
         this.elementos.infoTexto.innerHTML = `
             <ul>
-                <li><b>Data e Hora:</b> ${Ajuda.formatarData()}.</li>
+                <li id="info-data-hora"><b>Data e Hora:</b> ${Ajuda.formatarData()}.</li>
                 <li>Sistema Operacional: ${Ajuda.detectarSO()}.</li>
                 <li>Largura da Tela: ${window.innerWidth}px.</li>
-                <li>Musica: ${this.audioManager?.musicaNome || 'Nenhuma musica tocando'}.</li>
-                <li>Volume: ${Ajuda.formatarPorcentagem(this.audioManager?.volume || 0)}</li>
+                <li id="info-musica">Musica: ${this.audioManager?.musicaNome || 'Nenhuma musica tocando'}.</li>
+                <li id="info-volume">Volume: ${Ajuda.formatarPorcentagem(this.audioManager?.volume || 0)}</li>
                 <div class="infoDivGuardarBotoes1">
                     Mixer Musica 
                     <div class="infoDivGuardarBotoes2">
@@ -109,7 +126,6 @@ export class GerenciadorUI {
                     <li><b>Ctrl + 0:</b> Reset Zoom.</li>
                     <li><b>Ctrl + Alt + Z:</b> Pausar Música.</li>
                     <li><b>Ctrl + Alt + N:</b> Nova Música.</li>
-                    <li><b>Ctrl + Alt + C:</b> Copiar Caminho.</li>
                     <li><b>Ctrl + Alt + D:</b> Diminuir Volume.</li>
                     <li><b>Ctrl + Alt + F:</b> Aumentar Volume.</li>
                 </ul>
@@ -117,6 +133,62 @@ export class GerenciadorUI {
         `;
         
         this._configurarControlesInfo();
+    }
+    
+    _atualizarDataHora() {
+        const dataHoraElement = document.getElementById('info-data-hora');
+        if (dataHoraElement && this.infoVisivel) {
+            dataHoraElement.innerHTML = `<b>Data e Hora:</b> ${Ajuda.formatarData()}.`;
+        }
+    }
+    
+    _atualizarMusica() {
+        const musicaElement = document.getElementById('info-musica');
+        if (musicaElement && this.infoVisivel && this.audioManager) {
+            musicaElement.textContent = `Musica: ${this.audioManager.musicaNome || 'Nenhuma musica tocando'}.`;
+        }
+    }
+    
+    _atualizarVolume() {
+        const volumeElement = document.getElementById('info-volume');
+        const volumeValue = document.getElementById('volumeValue');
+        const volumeSlider = document.getElementById('volumeSlider');
+        
+        if (this.infoVisivel && this.audioManager) {
+            const volumePercent = Ajuda.formatarPorcentagem(this.audioManager.volume);
+            
+            if (volumeElement) {
+                volumeElement.textContent = `Volume: ${volumePercent}`;
+            }
+            
+            if (volumeValue) {
+                volumeValue.textContent = volumePercent;
+            }
+            
+            if (volumeSlider) {
+                volumeSlider.value = this.audioManager.volume;
+            }
+        }
+    }
+    
+    _atualizarPlayPauseButton() {
+        const playPauseBtn = document.getElementById('play_pause');
+        if (playPauseBtn && this.infoVisivel && this.audioManager) {
+            playPauseBtn.classList.toggle('pausar', this.audioManager.pausar);
+        }
+    }
+    
+    // Handlers para eventos
+    _handleVolumeChange(e) {
+        this._atualizarVolume();
+    }
+    
+    _handlePausarChange(e) {
+        this._atualizarPlayPauseButton();
+    }
+    
+    _handleMusicaChange(e) {
+        this._atualizarMusica();
     }
     
     _configurarControlesInfo() {
@@ -137,10 +209,12 @@ export class GerenciadorUI {
                     if (this.audioManager.audioAtual) {
                         this.audioManager.audioAtual.volume = volume;
                     }
-                    ServicoArmazenamento.setVolume(volume);
-                }
-                if (volumeValue) {
-                    volumeValue.textContent = Ajuda.formatarPorcentagem(volume);
+                    ServicoArmazenamento.salvarVolume(volume); // Usar método correto
+                    this._atualizarVolume(); // Atualizar UI imediatamente
+                    
+                    // Disparar evento para sincronizar
+                    const evento = new CustomEvent('volumechange', { detail: { volume } });
+                    window.dispatchEvent(evento);
                 }
             });
         }
@@ -152,7 +226,7 @@ export class GerenciadorUI {
             
             playPauseBtn.addEventListener('click', () => {
                 this.audioManager?.togglePausar();
-                playPauseBtn.classList.toggle('pausar');
+                this._atualizarPlayPauseButton(); // Atualizar UI imediatamente
             });
         }
         
@@ -163,27 +237,17 @@ export class GerenciadorUI {
             
             novaMusicaBtn.addEventListener('click', () => {
                 this.audioManager?.proximaMusica();
+                // O evento 'musicachange' será disparado pelo audioManager
             });
         }
     }
     
+    // Métodos públicos para compatibilidade
     atualizarVolumeDisplay() {
-        const volumeValue = document.getElementById('volumeValue');
-        const volumeSlider = document.getElementById('volumeSlider');
-        
-        if (volumeValue && this.audioManager) {
-            volumeValue.textContent = Ajuda.formatarPorcentagem(this.audioManager.volume);
-        }
-        
-        if (volumeSlider && this.audioManager) {
-            volumeSlider.value = this.audioManager.volume;
-        }
+        this._atualizarVolume();
     }
     
     atualizarPlayPauseBtn() {
-        const playPauseBtn = document.getElementById('play_pause');
-        if (playPauseBtn && this.audioManager) {
-            playPauseBtn.classList.toggle('pausar', this.audioManager.pausar);
-        }
+        this._atualizarPlayPauseButton();
     }
 }

@@ -46,7 +46,6 @@ export class GerenciadorAtalhos {
                 'x': () => this.uiManager?.toggleInfo(),
                 'n': () => this.audioManager?.proximaMusica(),
                 'z': () => this.audioManager?.togglePausar(),
-                'c': () => this._copiarCaminho(),
                 'd': () => this.audioManager?.diminuirVolume(),
                 'f': () => this.audioManager?.aumentarVolume()
             };
@@ -69,11 +68,6 @@ export class GerenciadorAtalhos {
                 this.zoomManager?.resetZoom();
             }
         }
-    }
-    
-    _copiarCaminho() {
-        navigator.clipboard.writeText('CD documents/Programas/Full-Stack/Projetos/MercadoSarruf_WEB/Api');
-        alert('Caminho copiado com sucesso!');
     }
     
     _executarFuncaoSAPO() {
