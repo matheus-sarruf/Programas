@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title> Galeria de Estudantes | IFPR - Campus Goioerê</title>
+    <link rel="icon" href="logos/ifpr_logo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-flex">
+        <div class="logo-area">
+          <div class="logo-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div class="logo-text">
+            <h2> IFPR - Campus Goioerê </h2>
+            <p> Ensino, Pesquisa e Extensão • Tecnologia & Inovação </p>
+          </div>
+        </div>
+        <button class="theme-toggle" id="themeToggle">
+          <i class="fas fa-moon"></i> <span id="themeText"> Modo Escuro </span>
+        </button>
+      </div>
+
+      <h1 class="main-title"><i class="fas fa-users"></i> Galeria de
+        Estudantes</h1>
+
+      <div class="filtros" id="filtrosContainer">
+        <button data-filter="todos" class="ativo">Todos</button>
+        <button data-filter="1ano">1º Ano</button>
+        <button data-filter="2ano">2º Ano</button>
+        <button data-filter="3ano">3º Ano</button>
+        <button data-filter="4ano">4º Ano</button>
+      </div>
+
+      <div class="stats-bar">
+        <div class="student-count" id="studentCount"><i
+            class="fas fa-user-graduate"></i> Carregando...</div>
+        <div class="action-buttons">
+          <button id="showFormBtn" class="btn-primary"><i
+              class="fas fa-plus-circle"></i> Novo Estudante</button>
+          <!-- <button id="resetDefaultBtn" class="btn-reset"><i
+              class="fas fa-undo-alt"></i> Restaurar Padrão</button> -->
+          <button id="dynamicActionBtn" class="btn-dynamic"
+            style="display: none;"></button>
+        </div>
+      </div>
+
+      <div id="addFormPanel" class="add-form" style="display: none;">
+        <h3 style="margin-bottom: 15px;"><i class="fas fa-user-plus"></i>
+          Adicionar estudante</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Nome completo</label>
+            <input type="text" id="studentName"
+              placeholder="Ex: Ana Clara Souza" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label>Turma / Ano</label>
+            <select id="studentYear">
+              <option value="1ano">1º Ano</option>
+              <option value="2ano">2º Ano</option>
+              <option value="3ano">3º Ano</option>
+              <option value="4ano">4º Ano</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>URL da imagem (ou faça upload)</label>
+            <input type="text" id="imageUrl"
+              placeholder="https://exemplo.com/foto.jpg">
+            <div class="file-helper"><i class="fas fa-cloud-upload-alt"></i> Ou
+              selecione arquivo:</div>
+            <input type="file" id="imageUpload"
+              accept="image/jpeg, image/png, image/jpg">
+          </div>
+          <div>
+            <button id="confirmAddBtn" class="btn-add"><i
+                class="fas fa-save"></i> Adicionar</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="galeriaContainer" class="galeria"></div>
+    </div>
+
+    <div id="customModal" class="modal">
+      <div class="modal-content">
+        <h3 id="modalTitle">Confirmar ação</h3>
+        <p id="modalMessage">Deseja continuar?</p>
+        <div class="modal-buttons">
+          <button id="modalConfirmBtn" class="modal-btn confirm">Sim</button>
+          <button id="modalCancelBtn" class="modal-btn cancel">Não</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <i class="fas fa-copyright"></i> 2026 IFPR Goioerê - Desenvolvido por
+      <a href="https://github.com/matheus-sarruf" target="_blank">Matheus Sarruf</a> • Galeria interativa
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

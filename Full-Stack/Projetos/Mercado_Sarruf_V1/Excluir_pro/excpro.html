@@ -6,8 +6,14 @@
         <title> Exclusão de produtos </title> <!-- titulo que vai ficar na janela -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- meta dados -->
-        <link rel="stylesheet" href="excpro.css"><!-- link esterno para o arquivo css -->
+        <link rel="stylesheet" href="../comum.css"><!-- link esterno para o arquivo css -->
         <link rel="shortcut icon" type="imagex/png" href="../Imgs/Manecreft_icone1.ico">
+
+        <style>
+            input#exclusao_pro_D {
+                color: red;
+            }
+        </style>
     </head>
 
     <body> <!-- corpo da pagina -->
@@ -17,9 +23,9 @@
                 <div class="alinha-esquerda">
                     <form id="exclusao_pro" method="post" action="excluir_pro.jsp">
                         <label for="id"> ID: </label>
-                        <input id="id" type="text" name="id" placeholder="digite aqui" size="35" maxlength="50"><br>                   
+                        <input id="id" type="text" name="id" placeholder="digite ID" size="35" maxlength="50"><br>                   
                         <label for="codigo"> Codigo: </label>
-                        <input id="codigo" type="text" name="codigo" placeholder="digite aqui" size="35" maxlength="50"><br>
+                        <input id="codigo" type="text" name="codigo" placeholder="digite Codigo" size="35" maxlength="50"><br>
                         <input id="exclusao_pro" type="submit" value="Excluir">
                     </form>
                     <p> Excluir um produto, tanha cuidado </p>
@@ -31,7 +37,7 @@
                 <div class="alinha-esquerda">
                     <form id="exclusao_pro" method="post" action="excluir_pro.jsp">
                         <input type="hidden" name="rami" value="12345677">
-                        <input id="exclusao_pro" type="submit" value="Exclusão D+">
+                        <input id="exclusao_pro_D" type="submit" value="Exclusão D+">
                     </form>
                     <p> ATENÇÃO: Esse butão exclui todos os itens do BD, faça um backup de segurança no "Pront". </p>
                     <!-- dentro do form ele executara e passra a tabela de produto para o java e prosteriormente para o mysql -->

@@ -8,6 +8,12 @@
     <!-- meta dados -->
     <link rel="stylesheet" href="../comum.css"><!-- link esterno para o arquivo css -->
     <link rel="shortcut icon" type="imagex/png" href="../Imgs/Manecreft_icone1.ico">
+    
+    <style>
+        input#listagem_pro {
+            margin: 0 !important;
+        }
+    </style>
 </head>
 
 <body> <!-- corpo da pagina -->
@@ -15,7 +21,7 @@
         <h1> Listagem de Produtos </h1>
         <section>
             <div class="alinha-esquerda">
-                <form id="listagem_pro" method="post" action="listar_pro1.jsp">
+                <form id="listagem_pro_form" method="post" action="listar_pro1.jsp">
                     <label for="listagem_pro"> Ver produtos: </label>
                     <input id="listagem_pro" type="submit" value=" Ir ">
                 </form>
@@ -28,16 +34,16 @@
             <div class="alinha-esquerda">
                 <form id="listagem_pro" method="post" action="listar_pro2.jsp">
                     <label for="id"> ID: </label>
-                    <input id="id" type="text" name="id" placeholder="digite aqui" size="35" maxlength="50"><br>
+                    <input id="id" type="text" name="id" placeholder="digite ID" size="35" maxlength="50"><br>
                     <label for="codigo"> Codigo: </label>
-                    <input id="codigo" type="text" name="codigo" placeholder="digite aqui" size="35" maxlength="50"><br>
+                    <input id="codigo" type="text" name="codigo" placeholder="digite Codigo" size="35" maxlength="50"><br>
                     <label for="nome"> Nome: </label>
-                    <input id="nome" type="text" name="nome" placeholder="digite aqui" size="35" maxlength="50"><br>
+                    <input id="nome" type="text" name="nome" placeholder="digite Nome" size="35" maxlength="50"><br>
                     <label for="preco"> Preço: </label>
-                    <input id="preco" type="text" name="preco" placeholder="digite aqui" size="35"
+                    <input id="preco" type="text" name="preco" placeholder="digite Preço" size="35"
                         pattern="[0-9]+([,\.][0-9]+)?" maxlength="50"><br>
                     <label for="quantidade"> Quantidade: </label>
-                    <input id="quantidade" type="text" name="quantidade" placeholder="digite aqui" size="35"
+                    <input id="quantidade" type="text" name="quantidade" placeholder="digite Quantidade" size="35"
                         maxlength="50"><br>
                     <input id="listagem_pro" type="submit" value=" Pesquisar ">
                 </form>

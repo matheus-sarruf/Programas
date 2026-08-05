@@ -1,0 +1,48 @@
+<!doctype html> <!-- versão dop HTML -->
+<html lang="pt-BR"> <!-- lingua que vai ser usada, e onde ficara todo o codigo htm(linguemgem de marcação)l-->
+
+<head> <!-- cabeça da pagina -->
+    <meta charset="UTF-8"> <!-- codificação dos caracteres -->
+    <title> Mercado Sarruf </title> <!-- titulo que vai ficar na janela -->
+    <meta name="description" content="promoções incriveis de café e ovos">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- meta dados -->
+    <link rel="stylesheet" href="principal.css"><!-- link esterno para o arquivo css -->
+    <link rel="icon" type="image/x-icon" href="Imgs/Manecreft_icone1.ico">
+    <!-- dois pontos mostra que esta no mesmo diretorio -->
+</head>
+
+<body> <!-- corpo da pagina -->
+    <header> <!-- cabeçario da pagina -->
+        <h1> Mercado Sarruf</h1>
+        <p><b> | </b> promoção de café e ovo</p>
+    </header>
+    <nav> <!-- navegação da pagina -->
+        <a href="Inicio/ini.html" id="inicio" target="janela_centro"> inicio </a>
+        <!-- diretório atual ativado para marcar -->
+        <a href="Listar_pro/listpro.html" id="listar_produtos" target="janela_centro"> Listar produtos </a>
+        <a href="Cadastro_pro/cadpro.html" id="cadastrar_produtos" target="janela_centro"> Cadastrar produtos </a>
+        <a href="Excluir_pro/excpro.html" id="excluir_produtos" target="janela_centro"> Excluir produtos </a>
+        <a href="Pront_bd/prontbd.jsp" id="pront_bd" target="janela_centro"> Pront </a>
+    </nav>
+    <main> <!-- meio da pagina(maior parte do conteudo) -->
+        <a href="#" name="reflink1" target="_blank"></a>
+        <iframe src="Listar_pro/listpro.html" name="janela_centro" id="janela_centro"></iframe>
+        <!-- ele abre uma outra area de pesquisa que pode ser video ou um site-->
+    </main>
+    <footer class="conteiner-link"> <!-- rodapé da pagina -->
+        <!-- conteudo do rodapé -->
+        <p>Acesse nosso <a href="https://www.instagram.com/mercadosarruf/">Instagram</a> para ficar por dentro das
+            novidades.</p>
+        <p>Contato: <b> (44) 99955-3902 </b> </p>
+        <p>Email: <b> matheus.sarruf@escola.pr.gov.br </b> </p>
+        <hr>
+        <br>
+        <p id="autor"> &copy; 2025 Site Sarruf - Todos os direitos reservados. Desenvolvido por <a
+                href="https://github.com/matheus-sarruf">@matheus-sarruf</a> </p>
+    </footer>
+    <!-- Vinculando o arquivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>

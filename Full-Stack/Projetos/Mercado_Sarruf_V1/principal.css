@@ -11,7 +11,7 @@ body {
 }
 
 /*todos os blocos vao sofre as modificações*/
-@media (max-width: 700px) {
+@media (max-width: 750px) {
 
     header,
     nav {
@@ -24,7 +24,7 @@ body {
     nav {
         flex-direction: column;
         /* Mantém a direção da navegação em coluna */
-        align-items: flex-start;
+        align-items:center;
         /* Alinha os itens à esquerda */
     }
 
@@ -33,6 +33,7 @@ body {
         /* Faz com que os links ocupem 80% da largura */
         margin: 5px;
         /* Espaço entre os links */
+        text-align: center;
     }
 }
 
