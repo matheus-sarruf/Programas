@@ -1,8 +1,35 @@
 [
   {
     "id": 1,
+    "name": "Sarruf",
+    "yearClass": "admin",
+    "image": "https://placehold.co/400x240?text=Admin",
+    "role": "admin",
+    "password": "37843737",
+    "profileImage": "/uploads/profiles/1785932419838-193644737.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Emerson",
+    "yearClass": "admin",
+    "image": "https://placehold.co/400x240?text=Admin",
+    "role": "admin",
+    "password": "12345677",
+    "profileImage": null
+  },
+  {
+    "id": 3,
     "name": "Teste",
     "yearClass": "4ano",
     "image": "/uploads/4ano/1785886429053-26051361.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Emerson2",
+    "yearClass": "admin",
+    "image": "https://placehold.co/400x240?text=Admin",
+    "role": "admin",
+    "password": "12345677",
+    "profileImage": null
   }
 ]

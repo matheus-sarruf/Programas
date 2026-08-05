@@ -8,7 +8,8 @@ const API_BASE_URL = '';
 // ================================================
 let currentStudents = [];
 let activeFilter = "todos";
-let nextId = 1;
+let currentUser = null;
+let authToken = localStorage.getItem('authToken');
 
 // ================================================
 // DOM ELEMENTOS
@@ -68,10 +69,105 @@ function showModal(title, message, onConfirm) {
 }
 
 // ================================================
+// SISTEMA DE LOGIN
+// ================================================
+
+async function login(name, password) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, password })
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            currentUser = data.user;
+            authToken = data.token;
+            localStorage.setItem('authToken', authToken);
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            renderUI();
+            alert(`Bem-vindo, ${currentUser.name}!`);
+            loadStudents();
+            loadAdmins();
+            closeLoginModal();
+        } else {
+            alert(data.error || 'Credenciais inválidas');
+        }
+    } catch (error) {
+        console.error(error);
+        alert('Erro ao fazer login');
+    }
+}
+
+function logout() {
+    currentUser = null;
+    authToken = null;
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('currentUser');
+    renderUI();
+    loadStudents();
+    alert('Logout realizado com sucesso');
+}
+
+function renderUI() {
+    const isAdmin = currentUser && currentUser.role === 'admin';
+
+    document.querySelectorAll('.admin-only').forEach(el => {
+        el.style.display = isAdmin ? 'inline-flex' : 'none';
+    });
+
+    // Controle específico para o painel de admin
+    const adminPanel = document.getElementById('adminPanel');
+    const toggleBtn = document.getElementById('toggleAdminPanelBtn');
+    if (adminPanel) {
+        if (isAdmin) {
+            adminPanel.style.display = 'none'; // Começa fechado
+            toggleBtn.innerHTML = '<i class="fas fa-user-cog"></i> Gerenciar Admins';
+            toggleBtn.style.background = 'var(--btn-warning)';
+        } else {
+            adminPanel.style.display = 'none';
+        }
+    }
+
+    const loginBtn = document.getElementById('loginBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const profileBtn = document.getElementById('profileBtn');
+    const userInfo = document.getElementById('userInfo');
+
+    if (currentUser) {
+        loginBtn.style.display = 'none';
+        logoutBtn.style.display = 'inline-flex';
+        profileBtn.style.display = 'inline-flex';
+        userInfo.style.display = 'inline';
+
+        let photoHtml = '';
+        if (currentUser.profileImage) {
+            photoHtml = `<img src="${currentUser.profileImage}" style="width:28px; height:28px; border-radius:50%; object-fit:cover; vertical-align:middle; margin-right:5px;">`;
+        } else {
+            photoHtml = `<i class="fas fa-user-shield" style="vertical-align:middle; margin-right:5px;"></i>`;
+        }
+        userInfo.innerHTML = `${photoHtml} ${currentUser.name}`;
+    } else {
+        loginBtn.style.display = 'inline-flex';
+        logoutBtn.style.display = 'none';
+        profileBtn.style.display = 'none';
+        userInfo.style.display = 'none';
+    }
+}
+
+function showLoginModal() {
+    document.getElementById('loginModal').style.display = 'flex';
+}
+
+function closeLoginModal() {
+    document.getElementById('loginModal').style.display = 'none';
+}
+
+// ================================================
 // FUNÇÕES DE COMUNICAÇÃO COM O SERVIDOR (API)
 // ================================================
 
-// Buscar alunos do servidor
 async function loadStudents() {
     try {
         const url = activeFilter === 'todos'
@@ -80,35 +176,41 @@ async function loadStudents() {
         const response = await fetch(url);
         const data = await response.json();
         currentStudents = data;
-        nextId = currentStudents.length ? Math.max(...currentStudents.map(s => s.id)) + 1 : 1;
         renderGallery();
     } catch (error) {
         console.error("Erro ao carregar alunos:", error);
-        alert("Não foi possível conectar ao servidor.");
+        alert("Não foi possível conectar ao servidor. Certifique-se que o servidor está rodando.");
     }
 }
 
-// Adicionar aluno
 async function addStudentToServer(name, yearClass, imageBase64, file) {
     const formData = new FormData();
     formData.append('name', name);
     formData.append('yearClass', yearClass);
 
     if (file) {
-        // Se selecionou um arquivo, envia o arquivo
         formData.append('image', file);
     } else if (imageBase64 && imageBase64.trim() !== '') {
-        // Se colocou uma URL
         formData.append('imageUrl', imageBase64);
     }
 
     try {
         const response = await fetch(`${API_BASE_URL}/students`, {
             method: 'POST',
+            headers: {
+                'Authorization': authToken || ''
+            },
             body: formData
         });
+
+        if (response.status === 401) {
+            alert('Você precisa estar logado como administrador para fazer isso.');
+            showLoginModal();
+            return false;
+        }
+
         if (response.ok) {
-            await loadStudents(); // Recarrega a lista
+            await loadStudents();
             return true;
         } else {
             const err = await response.json();
@@ -117,18 +219,25 @@ async function addStudentToServer(name, yearClass, imageBase64, file) {
         }
     } catch (error) {
         console.error(error);
-        alert("Erro de rede. O servidor está rodando?");
+        alert("Erro de rede.");
         return false;
     }
 }
 
-// Remover aluno
 async function deleteStudentById(id) {
     const student = currentStudents.find(s => s.id === id);
     if (!student) return;
     showModal("Remover estudante", `Deseja remover ${student.name} da galeria?`, async () => {
         try {
-            await fetch(`${API_BASE_URL}/students/${id}`, { method: 'DELETE' });
+            const response = await fetch(`${API_BASE_URL}/students/${id}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': authToken || '' }
+            });
+            if (response.status === 401) {
+                alert('Você precisa estar logado como administrador.');
+                showLoginModal();
+                return;
+            }
             await loadStudents();
         } catch (error) {
             console.error(error);
@@ -136,7 +245,6 @@ async function deleteStudentById(id) {
     });
 }
 
-// Promover turma
 async function promoteYear(fromClass, toClass, fromLabel, toLabel) {
     const studentsToPromote = currentStudents.filter(s => s.yearClass === fromClass);
     if (studentsToPromote.length === 0) {
@@ -145,11 +253,19 @@ async function promoteYear(fromClass, toClass, fromLabel, toLabel) {
     }
     showModal("Promover turma", `Promover ${studentsToPromote.length} estudante(s) do ${fromLabel} para o ${toLabel}?`, async () => {
         try {
-            await fetch(`${API_BASE_URL}/students/promote`, {
+            const response = await fetch(`${API_BASE_URL}/students/promote`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': authToken || ''
+                },
                 body: JSON.stringify({ fromClass, toClass })
             });
+            if (response.status === 401) {
+                alert('Você precisa estar logado como administrador.');
+                showLoginModal();
+                return;
+            }
             activeFilter = "todos";
             await loadStudents();
             updateDynamicButton();
@@ -159,7 +275,6 @@ async function promoteYear(fromClass, toClass, fromLabel, toLabel) {
     });
 }
 
-// Excluir todos de uma turma
 async function deleteAllByYear(yearClass, yearLabel) {
     const studentsToDelete = currentStudents.filter(s => s.yearClass === yearClass);
     if (studentsToDelete.length === 0) {
@@ -168,7 +283,15 @@ async function deleteAllByYear(yearClass, yearLabel) {
     }
     showModal("Excluir todos", `Tem certeza que deseja excluir TODOS os ${studentsToDelete.length} estudante(s) do ${yearLabel}?`, async () => {
         try {
-            await fetch(`${API_BASE_URL}/students?year=${yearClass}`, { method: 'DELETE' });
+            const response = await fetch(`${API_BASE_URL}/students?year=${yearClass}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': authToken || '' }
+            });
+            if (response.status === 401) {
+                alert('Você precisa estar logado como administrador.');
+                showLoginModal();
+                return;
+            }
             if (activeFilter === yearClass) activeFilter = "todos";
             await loadStudents();
             updateDynamicButton();
@@ -176,6 +299,156 @@ async function deleteAllByYear(yearClass, yearLabel) {
             console.error(error);
         }
     });
+}
+
+// ================================================
+// ADMIN: Gerenciar administradores
+// ================================================
+
+async function loadAdmins() {
+    if (!authToken) return;
+    try {
+        const response = await fetch(`${API_BASE_URL}/admin/list`, {
+            headers: { 'Authorization': authToken }
+        });
+        if (response.ok) {
+            const admins = await response.json();
+            const list = document.getElementById('adminList');
+            if (admins.length === 0) {
+                list.innerHTML = '<p style="color:var(--text-secondary);">Nenhum administrador cadastrado.</p>';
+                return;
+            }
+            list.innerHTML = admins.map(admin => {
+                const isMaster = admin.id === 1 || admin.id === 2;
+                const isSelf = admin.id === currentUser?.id;
+
+                let actionButtons = '';
+                if (isMaster) {
+                    actionButtons = '<span style="font-size:0.7rem; opacity:0.6; background:var(--if-green-light); padding:2px 10px; border-radius:20px;">Master</span>';
+                } else if (isSelf) {
+                    actionButtons = '<span style="font-size:0.8rem; opacity:0.6;">(você)</span>';
+                } else {
+                    actionButtons = `<button onclick="deleteAdmin(${admin.id})" class="delete-btn" style="position:static; background:#c82333; width:28px; height:28px;"><i class="fas fa-trash"></i></button>`;
+                }
+
+                return `
+                    <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:var(--bg-body); border-radius:30px; margin-bottom:5px;">
+                        <span><i class="fas fa-user-shield" style="color:var(--if-green);"></i> ${admin.name}</span>
+                        ${actionButtons}
+                    </div>
+                `;
+            }).join('');
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function deleteAdmin(id) {
+    if (!confirm('Tem certeza que deseja remover este administrador?')) return;
+    try {
+        const response = await fetch(`${API_BASE_URL}/admin/${id}`, {
+            method: 'DELETE',
+            headers: { 'Authorization': authToken }
+        });
+        if (response.ok) {
+            alert('Administrador removido!');
+            loadAdmins();
+        } else {
+            const err = await response.json();
+            alert('Erro: ' + err.error);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// ================================================
+// PERFIL DO ADMINISTRADOR
+// ================================================
+
+function showProfileModal() {
+    if (!currentUser) return;
+
+    document.getElementById('profileName').value = currentUser.name;
+    document.getElementById('profileCurrentPassword').value = '';
+    document.getElementById('profileNewPassword').value = '';
+    document.getElementById('profileConfirmPassword').value = '';
+
+    if (currentUser.profileImage) {
+        document.getElementById('profilePreview').src = currentUser.profileImage;
+    } else {
+        document.getElementById('profilePreview').src = 'https://placehold.co/100x100?text=Admin';
+    }
+
+    document.getElementById('profileModal').style.display = 'flex';
+}
+
+function closeProfileModal() {
+    document.getElementById('profileModal').style.display = 'none';
+}
+
+async function updateProfile(name, currentPassword, newPassword) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/admin/profile`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': authToken
+            },
+            body: JSON.stringify({ newName: name, currentPassword, newPassword })
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert('Perfil atualizado com sucesso!');
+            currentUser.name = data.user.name;
+            currentUser.profileImage = data.user.profileImage;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            renderUI();
+            closeProfileModal();
+            loadAdmins();
+            return true;
+        } else {
+            alert('Erro: ' + data.error);
+            return false;
+        }
+    } catch (error) {
+        console.error(error);
+        alert('Erro ao atualizar perfil');
+        return false;
+    }
+}
+
+async function uploadProfileImage(file) {
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('profileImage', file);
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/admin/profile/image`, {
+            method: 'POST',
+            headers: {
+                'Authorization': authToken
+            },
+            body: formData
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            currentUser.profileImage = data.profileImage;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            document.getElementById('profilePreview').src = data.profileImage;
+            renderUI();
+            alert('Foto de perfil atualizada!');
+        } else {
+            alert('Erro: ' + data.error);
+        }
+    } catch (error) {
+        console.error(error);
+        alert('Erro ao enviar imagem');
+    }
 }
 
 // ================================================
@@ -187,6 +460,10 @@ function updateDynamicButton() {
         dynamicActionBtn.style.display = "none";
         return;
     }
+    if (!currentUser || currentUser.role !== 'admin') {
+        dynamicActionBtn.style.display = "none";
+        return;
+    }
     dynamicActionBtn.style.display = "inline-flex";
     if (activeFilter === "1ano") {
         dynamicActionBtn.innerHTML = '<i class="fas fa-arrow-right"></i> Promover 1º para 2º Ano';
@@ -195,7 +472,7 @@ function updateDynamicButton() {
     } else if (activeFilter === "2ano") {
         dynamicActionBtn.innerHTML = '<i class="fas fa-arrow-right"></i> Promover 2º para 3º Ano';
         dynamicActionBtn.className = "btn-dynamic promote";
-        dynamicActionBtn.onclick = () => promoteYear("2ano", "3ano", "3º ano", "4º ano"); // Corrigi para 3->4
+        dynamicActionBtn.onclick = () => promoteYear("2ano", "3ano", "2º ano", "3º ano");
     } else if (activeFilter === "3ano") {
         dynamicActionBtn.innerHTML = '<i class="fas fa-arrow-right"></i> Promover 3º para 4º Ano';
         dynamicActionBtn.className = "btn-dynamic promote";
@@ -208,7 +485,6 @@ function updateDynamicButton() {
 }
 
 function renderGallery() {
-    // currentStudents já vem filtrado pela API, mas vamos manter a lógica local também
     let filtered = [...currentStudents];
     if (activeFilter !== "todos") {
         filtered = filtered.filter(student => student.yearClass === activeFilter);
@@ -231,9 +507,7 @@ function renderGallery() {
                     <div class="info">
                         <h3>${escapeHtml(student.name)}</h3>
                         <p>${yearLabel}</p>
-                        <button class="delete-btn" data-id="${student.id}" title="Remover estudante">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
+                        ${currentUser && currentUser.role === 'admin' ? `<button class="delete-btn" data-id="${student.id}" title="Remover estudante"><i class="fas fa-trash-alt"></i></button>` : ''}
                     </div>
                 </div>`;
     });
@@ -255,7 +529,7 @@ function highlightActiveFilterButton() {
 
 function setFilter(filter) {
     activeFilter = filter;
-    loadStudents(); // Recarrega os dados filtrados
+    loadStudents();
 }
 
 // ================================================
@@ -305,6 +579,44 @@ function initEventListeners() {
         });
     });
 
+    // Botão Perfil
+    document.getElementById('profileBtn').addEventListener('click', showProfileModal);
+
+    // Formulário Perfil
+    document.getElementById('profileForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('profileName').value.trim();
+        const currentPassword = document.getElementById('profileCurrentPassword').value;
+        const newPassword = document.getElementById('profileNewPassword').value;
+        const confirmPassword = document.getElementById('profileConfirmPassword').value;
+
+        if (!name) {
+            alert('Nome não pode ficar vazio');
+            return;
+        }
+
+        if (newPassword && newPassword !== confirmPassword) {
+            alert('Nova senha e confirmação não coincidem');
+            return;
+        }
+
+        if (newPassword && !currentPassword) {
+            alert('Para mudar a senha, informe a senha atual');
+            return;
+        }
+
+        await updateProfile(name, currentPassword, newPassword || '');
+    });
+
+    // Upload de foto de perfil
+    document.getElementById('profileImageUpload').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            uploadProfileImage(file);
+            e.target.value = '';
+        }
+    });
+
     showFormBtn.addEventListener("click", () => {
         if (addFormPanel.style.display === "none" || addFormPanel.style.display === "") {
             addFormPanel.style.display = "block";
@@ -335,14 +647,86 @@ function initEventListeners() {
             showFormBtn.innerHTML = '<i class="fas fa-plus-circle"></i> Novo Estudante';
         }
     });
+
+    document.getElementById('loginBtn').addEventListener('click', showLoginModal);
+    document.getElementById('logoutBtn').addEventListener('click', logout);
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('loginName').value;
+        const password = document.getElementById('loginPassword').value;
+        await login(name, password);
+    });
+
+    document.getElementById('createAdminBtn').addEventListener('click', async () => {
+        const name = document.getElementById('newAdminName').value.trim();
+        const password = document.getElementById('newAdminPassword').value.trim();
+
+        if (!name || !password) {
+            alert('Preencha nome e senha');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/admin/create`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': authToken
+                },
+                body: JSON.stringify({ name, password })
+            });
+
+            if (response.ok) {
+                alert('Administrador criado com sucesso!');
+                document.getElementById('newAdminName').value = '';
+                document.getElementById('newAdminPassword').value = '';
+                loadAdmins();
+            } else {
+                const err = await response.json();
+                alert('Erro: ' + err.error);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    });
+
+    const toggleAdminPanelBtn = document.getElementById('toggleAdminPanelBtn');
+    const adminPanel = document.getElementById('adminPanel');
+
+    toggleAdminPanelBtn.addEventListener('click', () => {
+        if (adminPanel.style.display === 'none' || adminPanel.style.display === '') {
+            adminPanel.style.display = 'block';
+            toggleAdminPanelBtn.innerHTML = '<i class="fas fa-minus-circle"></i> Fechar Admins';
+            toggleAdminPanelBtn.style.background = 'var(--btn-danger)';
+        } else {
+            adminPanel.style.display = 'none';
+            toggleAdminPanelBtn.innerHTML = '<i class="fas fa-user-cog"></i> Gerenciar Admins';
+            toggleAdminPanelBtn.style.background = 'var(--btn-warning)';
+        }
+    });
 }
 
-// INICIALIZAÇÃO PRINCIPAL
+// ================================================
+// INICIALIZAÇÃO
+// ================================================
+
 async function init() {
-    await loadStudents(); // Carrega os dados do servidor
+    const savedUser = localStorage.getItem('currentUser');
+    if (savedUser) {
+        currentUser = JSON.parse(savedUser);
+        authToken = localStorage.getItem('authToken');
+    }
+
+    renderUI();
+    await loadStudents();
     setupDelegation();
     initTheme();
     initEventListeners();
+
+    if (currentUser && currentUser.role === 'admin') {
+        loadAdmins();
+    }
 }
 
 init();
