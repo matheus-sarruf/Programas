@@ -42,7 +42,7 @@
   },
   {
     "id": 15,
-    "name": "Professores Roberto Cesar Soltoski",
+    "name": "Roberto Cesar Soltoski",
     "yearClass": "1ano",
     "image": "https://media.licdn.com/dms/image/v2/C4D03AQGMJtE5QbeSng/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1517363961171?e=2147483647&v=beta&t=6XJsdswZAVtyyfynnGoG2lGuEcT7uJTyYqgvElwPfj0",
     "role": "user",
@@ -69,14 +69,6 @@
     "name": "Emerson Ferreira da Silva",
     "yearClass": "1ano",
     "image": "/uploads/1ano/1785941844651-377290358.png",
-    "role": "user",
-    "password": null
-  },
-  {
-    "id": 19,
-    "name": "Viviane Martins de Souza",
-    "yearClass": "1ano",
-    "image": "/uploads/1ano/1785941922746-350036478.png",
     "role": "user",
     "password": null
   },
@@ -133,6 +125,30 @@
     "name": "Marcos Paulo Rosa",
     "yearClass": "2ano",
     "image": "https://i1.rgstatic.net/ii/profile.image/272335735357450-1441941307288_Q512/Marcos-Paulo-Rosa.jpg",
+    "role": "user",
+    "password": null
+  },
+  {
+    "id": 27,
+    "name": "Xernobill4",
+    "yearClass": "2ano",
+    "image": "/uploads/2ano/1786010698976-79241182.jpg",
+    "role": "user",
+    "password": null
+  },
+  {
+    "id": 28,
+    "name": "Ciro",
+    "yearClass": "1ano",
+    "image": "/uploads/1ano/1786033172931-701743682.jpg",
+    "role": "user",
+    "password": null
+  },
+  {
+    "id": 29,
+    "name": "Ruzza",
+    "yearClass": "4ano",
+    "image": "/uploads/4ano/1786033199801-342235796.jpg",
     "role": "user",
     "password": null
   }

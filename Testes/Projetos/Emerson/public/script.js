@@ -8,6 +8,7 @@ const API_BASE_URL = '';
 // ================================================
 let currentStudents = [];
 let activeFilter = "todos";
+let searchTerm = "";
 let currentUser = null;
 let authToken = localStorage.getItem('authToken');
 
@@ -69,7 +70,7 @@ function showModal(title, message, onConfirm) {
 }
 
 // ================================================
-// SISTEMA DE LOGIN
+// SISTEMA DE LOGIN Total
 // ================================================
 
 async function login(name, password) {
@@ -87,7 +88,6 @@ async function login(name, password) {
             localStorage.setItem('authToken', authToken);
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
             renderUI();
-            alert(`Bem-vindo, ${currentUser.name}!`);
             loadStudents();
             loadAdmins();
             closeLoginModal();
@@ -489,7 +489,15 @@ function renderGallery() {
     if (activeFilter !== "todos") {
         filtered = filtered.filter(student => student.yearClass === activeFilter);
     }
-    studentCountSpan.innerHTML = `<i class="fas fa-user-graduate"></i> ${filtered.length} estudante(s) exibido(s) | Total: ${currentStudents.length}`;
+
+    if (searchTerm.trim() !== "") {
+        const term = searchTerm.trim().toLowerCase();
+        filtered = filtered.filter(student =>
+            student.name.toLowerCase().includes(term)
+        );
+    }
+
+    studentCountSpan.innerHTML = `<i class="fas fa-user-graduate"></i> ${filtered.length} estudantes exibidos`;
 
     if (filtered.length === 0) {
         galeriaDiv.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:50px; background:var(--bg-surface); border-radius:32px;">
@@ -705,6 +713,13 @@ function initEventListeners() {
             toggleAdminPanelBtn.style.background = 'var(--btn-warning)';
         }
     });
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            searchTerm = e.target.value;
+            renderGallery(); // re-renderiza com o filtro
+        });
+    }
 }
 
 // ================================================

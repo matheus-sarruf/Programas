@@ -627,3 +627,52 @@ footer a:hover {
         justify-content: center;
     }
 }
+
+/* CAMPO DE BUSCA */
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background: var(--bg-body);
+    border-radius: 40px;
+    padding: 4px 12px;
+    border: 1px solid var(--border-color);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    flex: 1 1 200px;
+    max-width: 300px;
+}
+
+.search-container:focus-within {
+    border-color: var(--if-green);
+    box-shadow: 0 0 0 3px rgba(27, 143, 53, 0.2);
+}
+
+.search-icon {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-right: 8px;
+    opacity: 0.6;
+}
+
+#searchInput {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 8px 0;
+    width: 100%;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+#searchInput::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.6;
+}
+
+/* Responsivo */
+@media (max-width: 650px) {
+    .search-container {
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+}
