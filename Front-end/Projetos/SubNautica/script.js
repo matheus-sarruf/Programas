@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const navList = document.querySelector('ul#nav');
     let menuOpen = false;
 
+    const validSections = ['inicio', 'subnautica1', 'belowzero', 'subnautica2', 'mapas'];
+
     // Função para mostrar uma seção específica
     function showSection(sectionId) {
         sections.forEach(section => {
@@ -21,12 +23,21 @@ document.addEventListener('DOMContentLoaded', function () {
             targetSection.classList.add('active-section');
         }
 
+        // Atualiza o estado ativo dos links do nav (importante para o #inicio)
         navLinks.forEach(link => {
-            link.classList.toggle('active', link.dataset.section === sectionId);
+            if (link.dataset.section === sectionId) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
         });
 
         gameBtns.forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.section === sectionId);
+            if (btn.dataset.section === sectionId) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
         });
 
         // Sombra do nav por seção
@@ -98,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
             link.addEventListener('click', function (e) {
                 e.preventDefault();
                 showSection(this.dataset.section);
+                history.pushState(null, null, `#${this.dataset.section}`);
             });
         });
     }
@@ -145,52 +157,55 @@ document.addEventListener('DOMContentLoaded', function () {
             link.addEventListener('click', function (e) {
                 e.preventDefault();
                 showSection(this.dataset.section);
+                history.pushState(null, null, `#${this.dataset.section}`);
             });
         });
     }
 
-    // Eventos dos links de navegação
+    // Eventos dos links de navegação principais
     navLinks.forEach(link => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
-            showSection(this.dataset.section);
+            const sectionId = this.dataset.section;
+            showSection(sectionId);
+            history.pushState(null, null, `#${sectionId}`);
         });
     });
 
     // Eventos dos botões de jogo
     gameBtns.forEach(btn => {
         btn.addEventListener('click', function () {
-            showSection(this.dataset.section);
+            const sectionId = this.dataset.section;
+            showSection(sectionId);
+            history.pushState(null, null, `#${sectionId}`);
         });
     });
 
     // Evento do botão de menu
     menuIcon.addEventListener('click', toggleMenu);
 
-    // Hash inicial
-    const hash = window.location.hash.substring(1);
-    const validSections = ['inicio', 'subnautica1', 'belowzero', 'subnautica2', 'mapas'];
-
-    if (validSections.includes(hash)) {
-        showSection(hash);
-    } else {
-        showSection('inicio');
-    }
-
-    // Atualizar hash na URL
-    navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-            history.pushState(null, null, `#${this.dataset.section}`);
-        });
-    });
-
-    // Botões de voltar/avançar
-    window.addEventListener('popstate', function () {
+    // ===== LIDA COM A URL INICIAL =====
+    // Isso garante que, ao abrir https://site-sarruf2.shop/#inicio,
+    // o botão "Início" fique ativo corretamente.
+    function handleHashChange() {
         const hash = window.location.hash.substring(1);
         if (validSections.includes(hash)) {
             showSection(hash);
+        } else {
+            // Se não houver hash ou for inválido, mostra o início
+            showSection('inicio');
+            // Opcional: coloca #inicio na URL
+            history.replaceState(null, null, '#inicio');
         }
-    });
+    }
+
+    // Executa ao carregar a página
+    handleHashChange();
+
+    // Ouve mudanças de hash (inclusive ao digitar a URL direto, clicar em links
+    // internos ou usar voltar/avançar do navegador)
+    window.addEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handleHashChange);
 
     // Configurar menu responsivo inicial
     function setupResponsiveMenu() {
