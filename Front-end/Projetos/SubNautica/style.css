@@ -75,12 +75,31 @@ ul#nav li a:hover {
     transform: scale(1);
 }
 
-.active {
+/* ===== CORREÇÃO DO ESTADO ATIVO DO NAV =====
+   A regra original `.active` tinha especificidade (0,1,0), MENOR que
+   `ul#nav li a` (1,0,3). Por isso o navegador ignorava a cor de fundo
+   do botão ativo. Usar `ul#nav li a.active` (1,1,3) resolve e ainda
+   empata/ganha do `:hover`, deixando o botão da seção atual visível. */
+ul#nav li a.active {
     background-color: #279db8;
+    color: #00243d;
+    text-shadow: 1px 1px 1px #00ffee;
+    box-shadow: 0 0 8px 2px rgba(0, 255, 238, 0.65),
+                1px 2px 3px 1px black;
+    transform: scale(1);
+}
+
+ul#nav li a.active:hover {
+    background-color: #279db8;
+    color: #00243d;
+    text-shadow: 1px 1px 1px #00ffee;
+    box-shadow: 0 0 10px 3px rgba(0, 255, 238, 0.75),
+                1px 2px 3px 1px black;
+    transform: scale(1);
 }
 
 h1 {
-    margin: 20px 10px 55px 10px;
+    margin: 20px 0px 55px 0px;
     font-size: 30px;
     color: #00fff2;
     text-align: center;
@@ -331,6 +350,117 @@ section#confira a:hover {
     background-color: #279db8;
 }
 
+/* ===== MENU MOBILE — VERSÃO CORRIGIDA ===== */
+.menu-icon {
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 55px;
+    font-size: 28px;
+    cursor: pointer;
+    border-radius: 15px;
+    border: 1px solid #00000070;
+    color: #00ff4c;
+    text-shadow: 2px 2px 1px rgb(0, 3, 92);
+    background-color: rgba(0, 100, 150, 0.3);
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+    z-index: 101;
+}
+
+.menu-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00ff4c, transparent);
+    animation: scanner 2.5s linear infinite;
+}
+
+.menu-icon i {
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.3, 1.5);
+}
+
+.menu-icon.menu-open {
+    background-color: rgba(0, 150, 200, 0.4);
+}
+
+.menu-icon.menu-open i {
+    transform: rotate(180deg);
+}
+
+/* Scanner animation */
+@keyframes scanner {
+    0% {
+        left: -100%;
+    }
+
+    50% {
+        left: 100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+/* Lista do menu em mobile — apenas max-height + opacity + translateY curto,
+   sem deslocamentos gigantes que causavam o "pulo" */
+@media (max-width: 500px) {
+    nav ul#nav {
+        display: flex;
+        flex-direction: column;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+        transition: max-height 0.45s ease, opacity 0.35s ease,
+            transform 0.45s ease, padding 0.3s ease;
+        padding: 0;
+    }
+
+    nav.menu-open ul#nav {
+        max-height: 600px;
+        opacity: 1;
+        transform: translateY(0);
+        padding: 20px 0;
+    }
+
+    .menu-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Animação para mostrar/esconder seções */
+@keyframes slideDown {
+    from {
+        max-height: 0;
+        opacity: 0;
+    }
+
+    to {
+        max-height: 500px;
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        max-height: 500px;
+        opacity: 1;
+    }
+
+    to {
+        max-height: 0;
+        opacity: 0;
+    }
+}
+
 /* Responsividade */
 @media (max-width: 900px) {
     div.img_ajust {
@@ -423,115 +553,5 @@ section#confira a:hover {
 
     nav ul#nav li a.active {
         transform: scale(0.95);
-    }
-}
-
-/* ===== MENU MOBILE — VERSÃO CORRIGIDA ===== */
-.menu-icon {
-    display: none;
-    position: relative;
-    width: 100%;
-    height: 55px;
-    font-size: 28px;
-    cursor: pointer;
-    border-radius: 15px;
-    border: 1px solid #00000070;
-    color: #00ff4c;
-    text-shadow: 2px 2px 1px rgb(0, 3, 92);
-    background-color: rgba(0, 100, 150, 0.3);
-    overflow: hidden;
-    transition: background-color 0.3s ease;
-    z-index: 101;
-}
-
-.menu-icon::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #00ff4c, transparent);
-    animation: scanner 2.5s linear infinite;
-}
-
-.menu-icon i {
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.3, 1.5);
-}
-
-.menu-icon.menu-open {
-    background-color: rgba(0, 150, 200, 0.4);
-}
-
-.menu-icon.menu-open i {
-    transform: rotate(180deg);
-}
-
-/* Lista do menu em mobile */
-@media (max-width: 500px) {
-    nav ul#nav {
-        display: flex;
-        flex-direction: column;
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        transform: translateY(-10px);
-        transition: max-height 0.45s ease, opacity 0.35s ease,
-            transform 0.45s ease, padding 0.3s ease;
-        padding: 0;
-    }
-
-    nav.menu-open ul#nav {
-        max-height: 600px;
-        opacity: 1;
-        transform: translateY(0);
-        padding: 20px 0;
-    }
-
-    .menu-icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-}
-
-/* Scanner animation */
-@keyframes scanner {
-    0% {
-        left: -100%;
-    }
-
-    50% {
-        left: 100%;
-    }
-
-    100% {
-        left: 100%;
-    }
-}
-
-/* Animação para mostrar/esconder seções */
-@keyframes slideDown {
-    from {
-        max-height: 0;
-        opacity: 0;
-    }
-
-    to {
-        max-height: 500px;
-        opacity: 1;
-    }
-}
-
-@keyframes slideUp {
-    from {
-        max-height: 500px;
-        opacity: 1;
-    }
-
-    to {
-        max-height: 0;
-        opacity: 0;
     }
 }
